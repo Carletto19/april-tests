@@ -1,0 +1,37 @@
+{
+  "database": {
+    "rules": "coe"
+  },
+  "firestore": {
+    "rules": "coe",
+    "indexes": "coe1"
+  },
+  "hosting": {
+    "public": "dist/december-project",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  },
+  "storage": {
+    "rules": "coe5"
+  },
+  "emulators": {
+    "hosting": {
+      "port": null
+    },
+    "ui": {
+      "enabled": false
+    }
+  },
+  "remoteconfig": {
+    "template": "co6"
+  }
+}

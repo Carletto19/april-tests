@@ -1,0 +1,53 @@
+label {
+    display: block;
+    margin: auto;
+    text-align: center;
+    margin: 20px;
+    color: black;
+    font-weight: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+
+
+  p {
+    color:royalblue;
+  }
+
+  .is-invalid{
+    border-color: red ; 
+  }
+
+  .text-danger{
+    color: red;
+  }
+  .text-hide{
+    display: none;
+  }
+  .redBorder{
+    border-color: red;
+  }
+
+
+  .example-form {
+    min-width: 150px;
+    max-width: 200px;
+    width: 100%;
+  }
+      
+  .example-full-width {
+    width: 100%;
+  }
+
+  mat-card{
+    width:300px;
+    left: 35%;
+    top: 5%;
+  }
+
+  mat-form-field{
+    left: 25%;
+  }
+
+  button{
+    left: 50%
+  }

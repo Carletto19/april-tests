@@ -1,0 +1,65 @@
+.mat-card{
+    background-color:lightgoldenrodyellow;
+}
+
+div{
+    font-weight:bold;
+}
+
+span{
+    font-weight:bold;
+}
+
+.teacher{
+    font-style: oblique;
+}
+
+.text-inside-grid{
+    font-weight:bold;
+    position: absolute;
+    margin-bottom: 90px;
+    align-self: center;
+}
+
+.tile-button{
+    position:absolute;
+    display: list-item;
+    bottom: 2%;
+    right: 2%;
+
+}
+
+.tile-button-long{
+    position:absolute;
+    display: list-item;
+    bottom: 2%;
+    right: 2%;
+}
+// mat-grid-list {
+//     display: flex;
+//     flex-wrap: wrap;
+//     justify-content: center;
+//     border: solid 1px #000;
+//   }
+
+
+mat-grid-tile {
+    background:white;
+    text-align: center;
+    border: solid 1px #000;
+    // flex-wrap: wrap;
+
+  }
+
+
+  mat-grid-list{
+      width: 99%;
+      left: .5%;
+      
+  }
+
+
+//   mat-grid-list, mat-grid-tile {
+//     padding-bottom: 0 !important;
+//     padding-top: 0 !important;
+// }

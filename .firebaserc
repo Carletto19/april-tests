@@ -1,0 +1,21 @@
+{
+  "targets": {
+    "january-project-aeb52": {
+      "hosting": {
+        "december-project": [
+          "january-project-aeb52"
+        ]
+      }
+    },
+    "april-tests": {
+      "hosting": {
+        "december-project": [
+          "april-tests"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "april-tests"
+  }
+}

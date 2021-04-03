@@ -1,0 +1,73 @@
+
+span{
+  
+  margin-left: 400px;
+  
+}
+
+
+
+label {
+    display: block;
+    margin: auto;
+
+    margin: 20px;
+    margin-left: 40%;
+    color: black;
+    font-weight: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+
+
+  p {
+    color:royalblue;
+  }
+
+  .redBorder{
+    border-color: red;
+  }
+
+  .emailRedBorder{
+    border-color: red;
+  }
+
+ 
+  
+  .is-invalid{
+    border-color: red ; 
+  }
+
+    .text-danger{
+      color: red;
+    }
+
+    .text-hide{
+      display: none;
+    }
+
+    //MATERIAL
+
+    
+  mat-card{
+    width:300px;
+    left: 35%;
+    top: 5%;
+  }
+
+  mat-form-field{
+    left: 25%;
+  }
+
+  button{
+    left: 50%
+  }
+
+    .example-form {
+      min-width: 150px;
+      max-width: 200px;
+      width: 100%;
+    }
+    
+    .example-full-width {
+      width: 100%;
+    }

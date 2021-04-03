@@ -1,0 +1,32 @@
+<mat-card>
+  <mat-card-title>Iniciar sesión</mat-card-title>
+<form class="example-form" [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Correo electrónico</mat-label>
+
+    <input matInput placeholder="ejemplo@uabc.edu.mx" type="email" formControlName="email"
+      [ngClass]="validationStyles.inputStyle(emailInput)">
+
+    <small *ngIf="validationStyles.requiredPrecaution(emailInput)" class="text-danger">Por favor complete este espacio</small>
+    <small *ngIf="validationStyles.emailPatternPrecaution(emailInput)" class="text-danger">Por favor ingresa un correo electrónico válido</small>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Contraseña</mat-label>
+    <input matInput placeholder="********" type="password" formControlName="password"
+      [ngClass]="validationStyles.inputStyle(passwordInput)">
+    <small *ngIf="validationStyles.requiredPrecaution(passwordInput)" class="text-danger">>Por favor complete este espacio</small>
+  </mat-form-field>
+
+  <div>
+     <button mat-raised-button color="accent" type="submit">Iniciar sesión</button>
+  </div>
+
+</form>
+<br>
+¿Aún no tienes una cuenta? <p [routerLink]="['/signUp']">Regístrate</p>
+
+<div>
+  {{ signInForm.value | json }}
+</div>

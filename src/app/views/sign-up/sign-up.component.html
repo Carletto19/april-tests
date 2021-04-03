@@ -1,0 +1,55 @@
+<mat-card>
+  <mat-card-title>Registrar</mat-card-title>
+<form class="example-form" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Nombre</mat-label>
+    <input matInput placeholder="Nahomy" type="text" formControlName="firstName"
+      [ngClass]="validationStyles.inputStyle(firstNameInput)">
+    <small *ngIf="validationStyles.requiredPrecaution(firstNameInput)" class="text-danger">Este espacio es requerido</small>
+    <small *ngIf="validationStyles.namesPatternPrecaution(firstNameInput)" class="text-danger">Por favor ingrese un nombre válido</small>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Apellido</mat-label>
+    <input  matInput placeholder="Pérez" type="text" formControlName="lastName" [ngClass]="validationStyles.inputStyle(lastNameInput)">
+    <small *ngIf="validationStyles.requiredPrecaution(lastNameInput)" class="text-danger">Este espacio es requerido</small>
+    <small *ngIf="validationStyles.namesPatternPrecaution(lastNameInput)" class="text-danger">Por favor ingrese un apellido válido</small>
+  
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Correo electrónico</mat-label>
+    <input matInput placeholder="ejemplo@uabc.edu.mx" type="email" formControlName="email" [ngClass]="validationStyles.inputStyle(emailInput)">
+    <small *ngIf="validationStyles.requiredPrecaution(emailInput)" class="text-danger">Este espacio es requerido</small>
+    <small *ngIf="validationStyles.emailPatternPrecaution(emailInput)" class="text-danger">Por favor ingresa un correo electrónico válido</small>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Contraseña</mat-label>
+    <input matInput placeholder="*********"  type="password" formControlName="password" [ngClass]="validationStyles.inputStyle(passwordInput)">
+    <small *ngIf="validationStyles.requiredPrecaution(passwordInput)" class="text-danger">Contraseña requerida</small>
+  </mat-form-field>
+
+
+
+  <mat-form-field appearance="fill">
+    <mat-label>Carrera</mat-label>
+    <mat-select formControlName="major" required>
+      <mat-option *ngFor="let item of majorList" [value]="item">{{ item.major }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div>
+    <button mat-raised-button color="accent" type="submit">Registrar</button>
+  </div>
+
+</form>
+<br>
+¿Ya tienes una cuenta? <p [routerLink]="['/signIn']">Inicia sesión</p>
+
+<div>
+  {{ signUpForm.value | json }}
+</div>
+
+</mat-card>

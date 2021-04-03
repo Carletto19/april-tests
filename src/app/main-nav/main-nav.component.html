@@ -1,0 +1,36 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+      [attr.role]="isHandset$ ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async)!.matches ? 'push' : 'over'"
+      [opened]="(isHandset$ | async)!.matches=== true"
+      >
+    <mat-toolbar color="accent">Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="['/scheduleHome']">Mapa de laboratorios</a>
+      <a mat-list-item [routerLink]="['/completeSchedule']">Horarios</a>
+      
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="accent">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="!(isHandset$ | async)"
+        >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>Mecánica App</span>
+      <span class="spacer"> </span>
+      <a [routerLink]="['/signUp']" *ngIf="!isLogged">Regístrate</a>
+      <a [routerLink]="['/signIn']" *ngIf="!isLogged">Iniciar sesión</a>
+      <a *ngIf="isLogged" (click)="onSignOut()">Cerrar sesión</a>
+      <button (click)="obtenerUsuarios()">OBTENR</button>
+    </mat-toolbar>
+    <ng-content></ng-content>
+    <!-- <app-schedule-map></app-schedule-map> -->
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<!-- *ngIf="isHandset$ | async" -->
