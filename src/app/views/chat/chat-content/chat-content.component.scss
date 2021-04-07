@@ -1,0 +1,39 @@
+body{
+    width: 500px;
+    height: 500px;
+    // align-content: center;
+    // margin: 0 auto;
+    // //  width: 80%;
+    //  vertical-align: middle;
+}
+
+
+
+button, input{
+    margin-left: 20px;
+    
+   
+}
+
+ul{
+    margin-left: 25%;
+    padding-bottom: 5px;
+    padding-left: 0;
+    list-style-type: none;
+}
+
+mat-card-footer{
+    position: absolute;
+    margin-left: 10%;
+    bottom: 100px
+}
+
+.messagesBox{
+    height:350px;
+    width:400px;
+    overflow: auto;
+}
+
+.bold{
+    font-weight:bold;
+}

@@ -17,7 +17,7 @@ export class RegistrationService {
   ) { }
 
   getUser(): Observable<any>{ // metodo para listar todos los estudiantes
-    return this.firestore.collection('users').snapshotChanges().pipe(first()/*, map(element => element.map)*/    );    //dile al tio que es lo que pasa cuando quitas .pipe(first())
+    return this.firestore.collection('users').snapshotChanges().pipe(/*, map(element => element.map)*/    );                                   //dile al tio que es lo que pasa cuando quitas .pipe(first())
   }
 
   registerUser(user: IdentificationTemplate){ //metodo para crear usuario

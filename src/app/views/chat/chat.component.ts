@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/data-services/auth.service';
 import { ChatService, Message } from 'src/app/data-services/chat.service';
+import {ProgressSpinnerMode} from '@angular/material/progress-spinner';
 
 
 @Component({
@@ -15,8 +18,9 @@ export class ChatComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
-    // private chatService: ChatService,
-  ) { 
+    private authService: AuthService,
+    public _chatService: ChatService,
+  ) {
     // this.allMessages = this.chatService.getMessages();
   }
 
@@ -26,8 +30,9 @@ export class ChatComponent implements OnInit {
   }
 
 
-  openChat(){
+  openChat() {
     this.dialog.open(ChatComponentContent);
+
   }
 
 }
@@ -35,26 +40,31 @@ export class ChatComponent implements OnInit {
 
 
 @Component({
-  templateUrl: './chat-content.component.html',
-  styleUrls: ['./chat-content.component.scss']
+  templateUrl: './chat-content/chat-content.component.html',
+  styleUrls: ['./chat-content/chat-content.component.scss']
 })
 export class ChatComponentContent implements OnInit {
 
-
+  messageInput: FormGroup;
   allMessages: Observable<Message>
 
   constructor(
-    private chatService: ChatService,
-  ) { 
-    this.allMessages = this.chatService.getMessages();
+    public _chatService: ChatService,
+  ) {
+    this.allMessages = this._chatService.getMessages();
   }
+
 
 
   ngOnInit(): void {
+    // this._chatService.getMessagesPromise();
   }
 
-  sendMessage(message: string){
-    this.chatService.sendMessage(message);
+  sendMessage(message: string) {
+    this._chatService.sendMessage(message);
+    // this._chatService.getMessagesPromise();
   }
+
+
 
 }

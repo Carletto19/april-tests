@@ -1,4 +1,7 @@
-<h2>Clases de hoy en este laboratorio</h2>
+<h2 *ngIf="isWeekend">El día de hoy no hay clases en este laboratorio</h2>
+
+<ng-container *ngIf="!isWeekend">
+  <h2>Clases de hoy en este laboratorio</h2>
 
 <table mat-table #table [dataSource]="dataSourceThermo" matSort >
 

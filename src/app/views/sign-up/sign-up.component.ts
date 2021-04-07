@@ -81,12 +81,12 @@ dataInput() {
     // this.registration.registration(data, data.email);
 
     // console.log('antes de');
-    this.authentication.signUp(data.email, data.password).then(() => {console.log('Ok'); });
+    // this.authentication.signUp(data.email, data.password).then(() => {console.log('Ok'); });
     this.registerDatabase.registerUser(data);
     // console.log('después de');
    
 
-    this.mainNav.isLogged = true;
+    //this.mainNav.isLogged = true;
     const user =  this.authentication.signUp(data.email, data.password);
 
     if(user){

@@ -15,6 +15,8 @@ export interface Message{
 })
 export class ChatService {
 
+  isLoaded: boolean = true;
+
   constructor(
     private chatDatabase: AngularFireDatabase 
   ) { }
@@ -22,6 +24,12 @@ export class ChatService {
   getMessages(): Observable<any> {
     return this.chatDatabase.list<Message>('messages').valueChanges()
   }
+
+
+  // getMessagesPromise(): Promise<any> {
+  //   return this.chatDatabase.list<Message>('messages').snapshotChanges().pipe(to);
+  //     /*this.isLoaded = false*/});
+  // }
 
   sendMessage(message: string){
     const currTime = Number(new Date());

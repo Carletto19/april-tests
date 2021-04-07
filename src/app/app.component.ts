@@ -7,7 +7,7 @@ import { RegistrationService } from './data-services/registration.service'
   template: `
   <app-main-nav>
   <router-outlet></router-outlet>
-  <app-chat></app-chat>
+  
   </app-main-nav>
   <!-- <app-main-page></app-main-page> -->
   `,

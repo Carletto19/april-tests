@@ -5,7 +5,8 @@ import { DialogComponent, DialogContentManufacture } from '../../shared/dialog/d
 import { Time } from '../../models/classes-time';
 import { defaultMaxListeners } from 'stream';
 import { WeekdayArray } from '../schedule-map/weekdayArrayClass';
-
+import { AuthService } from '../../data-services/auth.service'; 
+import { MainNavComponent } from '../../main-nav/main-nav.component';
 
 
 @Component({
@@ -18,7 +19,12 @@ export class ScheduleMapComponent implements OnInit, OnDestroy {
   dialogBox: DialogComponent;
   manufactureContent: DialogContentManufacture;
 
-  constructor(public dialog: MatDialog) {
+  constructor(
+    public dialog: MatDialog,
+    public _authService: AuthService,
+    public mainNavComponent: MainNavComponent
+    ) 
+  {
     this.dialogBox = new DialogComponent(dialog);
     this.manufactureContent = new DialogContentManufacture;
    }
@@ -28,7 +34,6 @@ export class ScheduleMapComponent implements OnInit, OnDestroy {
   seconds: Number;
   day: Number;
 
-  isLogged: boolean;
   name: string;
 
   ngOnInit() {
@@ -210,13 +215,13 @@ export class ScheduleMapComponent implements OnInit, OnDestroy {
 
     if (this.currentClassIndex(name) == -1) {
       const buttonStyles = {
-        'background-color': 'rgb(155, 243, 145)'
+        'background-color': 'rgb(76, 175, 80)'
       };
       return buttonStyles;
     }
     else {
       const buttonStyles = {
-        'background-color': 'rgb(212, 135, 153)'
+        'background-color': 'rgb(244, 67, 54)'
       };
       return buttonStyles;
     }

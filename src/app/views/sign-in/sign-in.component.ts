@@ -48,11 +48,11 @@ export class SignInComponent {
 
   onSubmit() {
     const signInData = this.signInDataInput();
-    this.signInIdentificationService.searchIdentification(signInData.email, signInData.password);
+    // this.signInIdentificationService.searchIdentification(signInData.email, signInData.password);
 
-    this.authentication.signIn(this.emailInput.value, this.passwordInput.value);
+    // this.authentication.signIn(this.emailInput.value, this.passwordInput.value);
 
-    this.mainNav.isLogged = true;
+    // this.mainNav.isLogged = true;
 
     const user = this.authentication.signIn(this.emailInput.value, this.passwordInput.value);
     if(user) {

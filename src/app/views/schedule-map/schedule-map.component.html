@@ -1,7 +1,5 @@
-<!-- <h1>Home</h1>
-<button (click)="currentClassIndex('design')">click for day found
-</button> -->
-<mat-card color="accent" >Son las {{changeHourFormat()}} y las clases en los laboratorios son: </mat-card>
+
+<mat-card color="accent" >Son las {{changeHourFormat()}} y las clases en los laboratorios son: <button (click)="this._authService.permitsForChat()">Clcik</button> </mat-card>
 <!-- <mat-card color="accent">Son las {{changeHourFormat()}} y las clases en los laboratorios son: </mat-card> -->
 
 
@@ -132,37 +130,4 @@
     </mat-grid-tile> 
 
 
-<!-- 
-
-    <mat-grid-list cols="2" rowHeight="2:1">
-      <mat-grid-tile>1</mat-grid-tile>
-      <mat-grid-tile>2</mat-grid-tile>
-      <mat-grid-tile>3</mat-grid-tile>
-      <mat-grid-tile>4</mat-grid-tile>
-    </mat-grid-list> -->
-    
-
-<!-- FOR ANOTHER SIDENNAV LINK
-  <br><br><br><br><br><br><br><br><br><br><br>
-  <br><br><br><br><br><br><br><br><br><br><br>
-
-<div> Laboratorio de manufactura: </div>
-{{classStatus('manufacture')}}
-<div> Con el docente </div>
-<span class="teacher">{{teacher('manufacture')}}</span><br><br>
-
-<div> Laboratorio de diseño: </div>
-{{classStatus('design')}}
-<div> Con el docente </div>
-<span class="teacher">{{teacher('design')}}</span><br><br>
-
-<div> Laboratorio de fluidos: </div>
-{{classStatus('fluids')}}
-<div> Con el docente </div>
-<span class="teacher">{{teacher('fluids')}}</span><br><br>
-
-<div> Laboratorio de termodinámica: </div>
-{{classStatus('thermo')}}
-<div> Con el docente </div>
-<span class="teacher">{{teacher('thermo')}}</span><br>
-<br>  -->
+    <app-chat *ngIf="this.mainNavComponent.isLogged"></app-chat>
