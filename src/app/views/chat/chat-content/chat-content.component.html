@@ -1,6 +1,6 @@
 <body>
 <h1>Pregunta algo</h1>
-<mat-spinner *ngIf="this._chatService.isLoaded"></mat-spinner>
+<!-- <mat-spinner *ngIf="flag"></mat-spinner> -->
 <div class="messagesBox">
 <ul *ngFor="let message of allMessages | async">
     <li>
@@ -28,7 +28,7 @@
     <form class="example-form">
         <mat-form-field class="example-full-width">
           <mat-label>Mensaje</mat-label>
-          <input matInput #newMessage maxlength="256" placeholder="¿Están abiertos los baños?">
+          <input matInput #newMessage maxlength="256" placeholder="¿Están abiertos los baños?" (keyup.enter)="sendMessage(newMessage.value)" >
           <mat-hint align="start"><strong>Tu mensaje se borrará en 2 horas</strong> </mat-hint>
           <!-- <mat-hint align="end">{{message.value.length}} / 256</mat-hint> -->
         </mat-form-field>
@@ -36,5 +36,7 @@
           <mat-icon>send</mat-icon>
       </button>
       </form>
+
+      <button (click)="tests()">Delete</button>
 </mat-card-footer>
 </body>

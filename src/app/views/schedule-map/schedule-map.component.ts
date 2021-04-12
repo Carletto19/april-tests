@@ -7,6 +7,8 @@ import { defaultMaxListeners } from 'stream';
 import { WeekdayArray } from '../schedule-map/weekdayArrayClass';
 import { AuthService } from '../../data-services/auth.service'; 
 import { MainNavComponent } from '../../main-nav/main-nav.component';
+import { ChatComponentContent } from '../../views/chat/chat.component';
+
 
 
 @Component({
@@ -22,7 +24,8 @@ export class ScheduleMapComponent implements OnInit, OnDestroy {
   constructor(
     public dialog: MatDialog,
     public _authService: AuthService,
-    public mainNavComponent: MainNavComponent
+    public mainNavComponent: MainNavComponent,
+    // public chatComponentContent: ChatComponentContent,
     ) 
   {
     this.dialogBox = new DialogComponent(dialog);
@@ -45,6 +48,8 @@ export class ScheduleMapComponent implements OnInit, OnDestroy {
         this.hour = time.getHours();
         this.day = time.getDay();
       }, 1000);
+
+      //this.chatComponentContent.sameTime()
 
   }
 

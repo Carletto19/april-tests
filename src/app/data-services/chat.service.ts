@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase  } from '@angular/fire/database';
-import { Observable } from 'rxjs';
+import { AngularFireDatabase, snapshotChanges  } from '@angular/fire/database';
+import { Query } from '@google-cloud/firestore';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { first } from 'rxjs/operators';
 
 
 export interface Message{
   message: string;
   time: string;
   date: string;
+  
 }
 
 
@@ -15,34 +18,61 @@ export interface Message{
 })
 export class ChatService {
 
-  isLoaded: boolean = true;
 
   constructor(
-    private chatDatabase: AngularFireDatabase 
+    public chatDatabase: AngularFireDatabase 
   ) { }
 
   getMessages(): Observable<any> {
-    return this.chatDatabase.list<Message>('messages').valueChanges()
+    return this.chatDatabase.list<Message>('messages').valueChanges();
   }
 
 
-  // getMessagesPromise(): Promise<any> {
-  //   return this.chatDatabase.list<Message>('messages').snapshotChanges().pipe(to);
-  //     /*this.isLoaded = false*/});
-  // }
+  key: any;
+
 
   sendMessage(message: string){
     const currTime = Number(new Date());
-    const readableTime = new Date(currTime).toLocaleDateString();
+    const readableTime = new Date(currTime).toLocaleTimeString();
     const readableDate = new Date(currTime).toDateString();
 
-    this.chatDatabase.list<Message>('messages').push({
+    let object = this.chatDatabase.list<Message>('messages').push({
       message,
       time: readableTime,
       date: readableDate,
-    });
+    }).key;
+
+    this.chatDatabase.database.ref('messages/'+object).child('id').set(object);
+
+
+    
+
+    //this.chatDatabase.list('/keys').push(object);
 
     this.chatDatabase.object('messages').update({'last_updated_at': currTime});
+
+ 
+
+  }
+
+
+
+  firstKeyFromDB(): Observable<any>{
+   return this.key = this.chatDatabase.list('/keys', ref => ref.limitToFirst(1)).valueChanges();
+  }
+
+
+
+  accumulatedKeys: string[] = [];
+
+
+  deleteMessage(){
+    
+    
+    return this.chatDatabase.database.ref('/messages').child('-MXuCGGBBeWBhsnqpNfN').remove();
+   // console.log(this.accumulatedKeys[0], this.key);
+    // console.log(this.chatDatabase.object('messages').remove());
+    ;
   }
 
 }

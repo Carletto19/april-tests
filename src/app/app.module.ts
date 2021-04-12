@@ -22,6 +22,7 @@ import {MatSortModule} from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table'  
 import {MatCardModule} from '@angular/material/card';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 
@@ -98,7 +99,8 @@ import { ChatComponentContent } from './views/chat/chat.component';
     MatDialogModule,
     MatSortModule,
     MatTableModule,
-    MatCardModule
+    MatCardModule,
+    MatTabsModule,
     // Time
   ],
   providers: [AuthService],

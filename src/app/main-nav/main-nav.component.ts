@@ -22,7 +22,7 @@ export class MainNavComponent implements OnInit, OnDestroy {
 
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private authService: AuthService,
+    private _authService: AuthService,
     private registerDatabase: RegistrationService) { }
 
 
@@ -30,24 +30,25 @@ export class MainNavComponent implements OnInit, OnDestroy {
   databaseSubscription: Subscription;
   public isLogged: boolean = false;
   public userEmail: any;
-  public user$: Observable<any> = this.authService.angularAuth.user;
+  public user$: Observable<any> = this._authService.angularAuth.user;
 
   ngOnInit() {
 
     this.checkForUser();
     // this.obtenerUsuarios();
+    // this._authService.subjectApproved.subscribe();
   }
 
   checkForUser() {
-    this.authSubscription = this.authService.getCurrentUser().subscribe(
+    this.authSubscription = this._authService.getCurrentUser().subscribe(
       user => {
         if (user) {
           this.isLogged = true;
           this.userEmail = user;
-          console.log('User->', user);
+          // console.log('User->', user);
         }
         else {
-          console.log('No user');
+          // console.log('No user');
         }
       }
     );
@@ -90,14 +91,15 @@ export class MainNavComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy() {
-    this.authSubscription.unsubscribe();
-    this.databaseSubscription.unsubscribe();
+    // this.authSubscription.unsubscribe();
+    // this.databaseSubscription.unsubscribe();
 
   }
 
   onSignOut() {
     this.isLogged = false;
-    this.authService.logOut();
+    this._authService.logOut();
+    // this._authService.subjectApproved.unsubscribe();
     // this.authSubscription.unsubscribe();
   }
 
