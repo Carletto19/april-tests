@@ -60,18 +60,23 @@ export class ChatComponentContent implements OnInit {
   }
 
 
-  public hour: Number;
+  public hour: number;
   public minutes: Number;
   ngOnInit(): void {
     setInterval(() => {
       const time = new Date;
       this.minutes = time.getMinutes();
-      this.hour = time.getHours()-20;
-      this.deleteAfterTime()
+      this.hour = time.getHours();
+      if(this.hour==0){
+        this.hour = 22;
+      }
+      else if (this.hour == 1){
+        this.hour = 23;
+      }
+      //this.deleteAfter2Hours()
     }, 10000);
-
+    this.deleteMessageAfter2Hours()
   }
-
 
 
   sendMessage(message: string) {
@@ -79,35 +84,60 @@ export class ChatComponentContent implements OnInit {
     this._chatService.sendMessage(message);
     }
     return;
-    // this._chatService.getMessagesPromise();
   }
 
 
+  deleteMessageAfter2Hours(){
+    this._chatService.getMessages().pipe(first()).subscribe(allMessages =>{
+      this._chatService.chatDatabase.database.ref('/messages/').child('-MY73zTvGBdcmFD8Sqtv').remove();
+      // let messageTime = <number>allMessages[0].timeCheck+ 2 * 60 * 60 * 1000;
+      let currentTime = Date.now();
+      // console.log(currentTime);
+      let allMessagesTimes = [];
+      let allIds = [];
+
+      for(let y = 0; y<allMessages.length-1; y++){
+        allMessagesTimes.push(allMessages[y].timeCheck + 1 * 60 * 60 * 1000 )
+        allIds.push(allMessages[y].id);
+      }
+
+      for(let i = 0; i<allMessages.length-1; i++){
+        if(allMessagesTimes[i]<= currentTime){
+          this._chatService.chatDatabase.database.ref('/messages/').child(allIds[i]).remove();
+        }
+        else{
+          console.log(false);
+        }
+      }
+
+      console.log(allMessagesTimes);
+      console.log(allIds);
+    }); 
+  }
 
 
   
-  showKey(){
-    return this._chatService.firstKeyFromDB().subscribe(lastItems =>{
-      
-      // this._chatService.chatDatabase.database.ref('/messages/').child(lastItems).remove();
-      // this.firstKey = lastItems;
-      console.log(lastItems);
-      let lastItemString = lastItems.toString();
-      console.log(lastItemString);
-
-      this._chatService.getMessages().subscribe(allMessages =>{
-        let usableTime = allMessages[0].time.slice(0,-3);
-        let currentTime =this.timeFormat();
-
-        console.log(usableTime + ' vs ' + currentTime  + '        '+ this.hour + this.minutes);
-        
-      })
-    }); 
-    // console.log(this._chatService.firstKeyFromDB())    .child('/'+lastItems))         this._chatService.chatDatabase.database.ref('messages/'+lastItems)
-
-    
+  tests(){
+    this._chatService.getMessages().pipe(first()).subscribe(allMessages =>{
+      if(allMessages.length<=1){
+        console.log('No hay nada')
+        return;
+      }
+      let usableTime = allMessages[0].time.slice(0,-3);
+      let itemKey = allMessages[0].id;
+      if(usableTime == this.timeFormat()){
+        this._chatService.chatDatabase.database.ref('/messages/').child(itemKey).remove();
+        console.log(true);
+        return
+      }
+      else{
+        console.log(false + itemKey + '    messagetuime->' + usableTime + '      actualtime->'+ this.timeFormat());
+      }
+    })
   }
 
+
+  
   timeFormat(): string{
     if(this.hour>9 && this.minutes>9){
       return (this.hour+':'+this.minutes);
@@ -123,51 +153,6 @@ export class ChatComponentContent implements OnInit {
     }
   }
 
-  deleteAfterTime(){
-    this._chatService.getMessages().pipe(first()).subscribe(allMessages =>{
-      let usableTime = allMessages[0].time.slice(0,-3);
-      let itemKey = allMessages[0].id;
-      if(usableTime == this.timeFormat()){
-        // setTimeout(() => {
-        this._chatService.chatDatabase.database.ref('/messages/').child(itemKey).remove();
-        console.log(true);
-        // },55000)
-        return
-      }
-      else{
-        console.log(false + itemKey + '    messagetuime->' + usableTime + '      actualtime->'+ this.timeFormat());
-      }
-
-      //console.log(lastItems)
-    })
-
-
-
-  }
-
-
-  tests(){
-    
-    this._chatService.getMessages().pipe(first()).subscribe(allMessages =>{
-      let lastItemString = allMessages.toString();
-
-      let firstItem = '-MXzWfTo1TaWgMOCQziW';
-      // lastItems.remove(object[0])
-      // let key = this._chatService.chatDatabase.database.ref('/messages/').child('id').set();
-
-      // console.log(idKey)
-      this._chatService.chatDatabase.database.ref('/messages/').child(firstItem).remove();
-      //this._chatService.chatDatabase.database.ref('/messages/').child(lastItemString).remove(); IMPORTANT********
-
-      // this.firstKey = lastItems;
-      console.log(allMessages.length);
-      // console.log(lastItemString);
-      // this._chatService.chatDatabase.database.ref('/messages').child(lastItemString).remove();
-      // this._chatService.chatDatabase.database.ref('/messages').child(lastItemString).remove();
-      // console.log(this._chatService.key.valueChanges)
-      // console.log(this._chatService.chatDatabase.list('messages/'+lastItems));
-    }); 
-  }
 
 
 

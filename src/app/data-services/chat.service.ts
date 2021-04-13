@@ -7,6 +7,7 @@ import { first } from 'rxjs/operators';
 
 export interface Message{
   message: string;
+  timeCheck: number,
   time: string;
   date: string;
   
@@ -33,11 +34,13 @@ export class ChatService {
 
   sendMessage(message: string){
     const currTime = Number(new Date());
+    const now = Date.now();
     const readableTime = new Date(currTime).toLocaleTimeString();
     const readableDate = new Date(currTime).toDateString();
 
     let object = this.chatDatabase.list<Message>('messages').push({
       message,
+      timeCheck: now,
       time: readableTime,
       date: readableDate,
     }).key;

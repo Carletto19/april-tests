@@ -4,6 +4,7 @@ import { ScheduleMapComponent } from '../app/views/schedule-map/schedule-map.com
 import { CompleteScheduleComponent } from './views/complete-schedule/complete-schedule.component';
 import { SignInComponent } from './views/sign-in/sign-in.component';
 import { SignUpComponent } from './views/sign-up/sign-up.component';
+import { SendEmailComponent } from './views/send-email/send-email.component';
 
 const routes: Routes = [
   {path: 'map', component: ScheduleMapComponent},
@@ -11,6 +12,7 @@ const routes: Routes = [
   {path: 'signUp', component: SignUpComponent},
   {path: 'scheduleHome', component: ScheduleMapComponent},
   {path: 'completeSchedule', component: CompleteScheduleComponent},
+  {path: 'sendVerificationEmail', component: SendEmailComponent},
 ];
 
 @NgModule({

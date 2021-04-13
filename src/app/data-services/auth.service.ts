@@ -41,7 +41,7 @@ export class AuthService {
 
   signUp(email: string, password: string): Promise<boolean> {
       return this.angularAuth.createUserWithEmailAndPassword(email, password)
-                              .then((result) => { console.log(result.user);  this.approved; return true; })
+                              .then((result) => { console.log(result.user);  this.approved; this.sendVerificationEmail(); return true; })
                               .catch((error) => { console.log(error); return false; });
 
   }
@@ -56,6 +56,10 @@ export class AuthService {
                             .then(() => { console.log('Cerraste sesión');  this.approved; return true})
                             .catch((error) => { console.log(error); return false});
   
+  }
+
+  async sendVerificationEmail(): Promise<void>{
+    return  (await this.angularAuth.currentUser).sendEmailVerification();
   }
 
 

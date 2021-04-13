@@ -148,7 +148,7 @@ export class DialogContentManufacture implements OnInit{
   templateUrl: './dialog-contents/dialog-content-design.html',
   styleUrls: ['./dialog.component.scss'],
 })
-export class DialogContentDesign implements AfterViewInit{
+export class DialogContentDesign implements OnInit{
   constructor() {}
 
   isWeekend: boolean = false;
@@ -163,7 +163,7 @@ export class DialogContentDesign implements AfterViewInit{
 
   day: Number;
 
-  ngAfterViewInit() {
+  ngOnInit() {
     this.dataSourceDesign.sort = this.sort;
     if(this.dayNumber() == 0 || this.dayNumber() == 6){
       this.isWeekend = true;
@@ -221,7 +221,7 @@ export class DialogContentDesign implements AfterViewInit{
   templateUrl: './dialog-contents/dialog-content-thermo.html',
   styleUrls: ['./dialog.component.scss'],
 })
-export class DialogContentThermo implements AfterViewInit{
+export class DialogContentThermo implements OnInit{
   constructor() {}
 
   isWeekend: boolean = false;
@@ -236,7 +236,7 @@ export class DialogContentThermo implements AfterViewInit{
 
   day: Number;
 
-  ngAfterViewInit() {
+  ngOnInit() {
     this.dataSourceThermo.sort = this.sort;
     if(this.dayNumber() == 0 || this.dayNumber() == 6){
       this.isWeekend = true;
@@ -293,7 +293,7 @@ export class DialogContentThermo implements AfterViewInit{
   templateUrl: './dialog-contents/dialog-content-fluids.html',
   styleUrls: ['./dialog.component.scss'],
 })
-export class DialogContentFluids implements AfterViewInit {
+export class DialogContentFluids implements OnInit {
   constructor() {}
 
   isWeekend: boolean = false;
@@ -308,7 +308,7 @@ export class DialogContentFluids implements AfterViewInit {
 
   day: Number;
 
-  ngAfterViewInit() {
+  ngOnInit() {
     this.dataSourceFluids.sort = this.sort;
     if(this.dayNumber() == 0 || this.dayNumber() == 6){
       this.isWeekend = true;

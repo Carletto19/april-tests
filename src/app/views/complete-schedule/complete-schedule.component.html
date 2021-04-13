@@ -1,195 +1,1018 @@
 <div><mat-tab-group mat-align-tabs="start">
-  <mat-tab label="First">Content 1
+  
+  <mat-tab label="Manufactura">
     <mat-card>
       <mat-card-title>Manufactura</mat-card-title>
-      <table mat-table #table [dataSource]="dataSourceManufacture" matSort >
+      <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Lunes
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <table mat-table #table [dataSource]="manufactureClassesFromThatDay('Lunes')" matSort >
       
-          <!-- Position Column -->
-          <ng-container matColumnDef="weekday">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Día </th>
-            <td mat-cell *matCellDef="let element"> {{element.weekday}} </td>
-          </ng-container>
+            <!-- Position Column -->
+            <ng-container matColumnDef="weekday">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Día </th>
+              <td mat-cell *matCellDef="let element"> {{element.weekday}} </td>
+            </ng-container>
+          
+            <!-- Name Column -->
+            <ng-container matColumnDef="startHour">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de entrada </th>
+              <td mat-cell *matCellDef="let element"> {{element.startHour}}:00 </td>
+            </ng-container>
         
-          <!-- Name Column -->
-          <ng-container matColumnDef="startHour">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de entrada </th>
-            <td mat-cell *matCellDef="let element"> {{element.startHour}}:00 </td>
-          </ng-container>
+            <!-- Weight Column -->
+            <ng-container matColumnDef="endHour">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de salida </th>
+                <td mat-cell *matCellDef="let element"> {{element.endHour}}:00 </td>
+              </ng-container>
+          
+            <!-- Weight Column -->
+            <ng-container matColumnDef="className">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Clase </th>
+              <td mat-cell *matCellDef="let element"> {{element.className}} </td>
+            </ng-container>
+          
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="teacher">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Docente </th>
+              <td mat-cell *matCellDef="let element"> {{element.teacher}} </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </mat-expansion-panel>
+      </mat-accordion>
       
-          <!-- Weight Column -->
-          <ng-container matColumnDef="endHour">
+      </mat-card>
+
+      <mat-card>
+        <mat-accordion>
+          <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Martes
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <table mat-table #table [dataSource]="manufactureClassesFromThatDay('Martes')" matSort >
+        
+              <!-- Position Column -->
+              <ng-container matColumnDef="weekday">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Día </th>
+                <td mat-cell *matCellDef="let element"> {{element.weekday}} </td>
+              </ng-container>
+            
+              <!-- Name Column -->
+              <ng-container matColumnDef="startHour">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de entrada </th>
+                <td mat-cell *matCellDef="let element"> {{element.startHour}}:00 </td>
+              </ng-container>
+          
+              <!-- Weight Column -->
+              <ng-container matColumnDef="endHour">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de salida </th>
+                  <td mat-cell *matCellDef="let element"> {{element.endHour}}:00 </td>
+                </ng-container>
+            
+              <!-- Weight Column -->
+              <ng-container matColumnDef="className">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Clase </th>
+                <td mat-cell *matCellDef="let element"> {{element.className}} </td>
+              </ng-container>
+            
+              <!-- Symbol Column -->
+              <ng-container matColumnDef="teacher">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Docente </th>
+                <td mat-cell *matCellDef="let element"> {{element.teacher}} </td>
+              </ng-container>
+            
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          </mat-expansion-panel>
+        </mat-accordion>
+        
+        </mat-card>
+
+
+        <mat-card>
+          <mat-accordion>
+            <mat-expansion-panel hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Miércoles
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <table mat-table #table [dataSource]="manufactureClassesFromThatDay('Miercoles')" matSort >
+          
+                <!-- Position Column -->
+                <ng-container matColumnDef="weekday">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Día </th>
+                  <td mat-cell *matCellDef="let element"> {{element.weekday}} </td>
+                </ng-container>
+              
+                <!-- Name Column -->
+                <ng-container matColumnDef="startHour">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de entrada </th>
+                  <td mat-cell *matCellDef="let element"> {{element.startHour}}:00 </td>
+                </ng-container>
+            
+                <!-- Weight Column -->
+                <ng-container matColumnDef="endHour">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de salida </th>
+                    <td mat-cell *matCellDef="let element"> {{element.endHour}}:00 </td>
+                  </ng-container>
+              
+                <!-- Weight Column -->
+                <ng-container matColumnDef="className">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Clase </th>
+                  <td mat-cell *matCellDef="let element"> {{element.className}} </td>
+                </ng-container>
+              
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="teacher">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Docente </th>
+                  <td mat-cell *matCellDef="let element"> {{element.teacher}} </td>
+                </ng-container>
+              
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+            </mat-expansion-panel>
+          </mat-accordion>
+          
+          </mat-card>
+
+
+          <mat-card>
+            <mat-accordion>
+              <mat-expansion-panel hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Jueves
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <table mat-table #table [dataSource]="manufactureClassesFromThatDay('Jueves')" matSort >
+            
+                  <!-- Position Column -->
+                  <ng-container matColumnDef="weekday">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Día </th>
+                    <td mat-cell *matCellDef="let element"> {{element.weekday}} </td>
+                  </ng-container>
+                
+                  <!-- Name Column -->
+                  <ng-container matColumnDef="startHour">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de entrada </th>
+                    <td mat-cell *matCellDef="let element"> {{element.startHour}}:00 </td>
+                  </ng-container>
+              
+                  <!-- Weight Column -->
+                  <ng-container matColumnDef="endHour">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de salida </th>
+                      <td mat-cell *matCellDef="let element"> {{element.endHour}}:00 </td>
+                    </ng-container>
+                
+                  <!-- Weight Column -->
+                  <ng-container matColumnDef="className">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Clase </th>
+                    <td mat-cell *matCellDef="let element"> {{element.className}} </td>
+                  </ng-container>
+                
+                  <!-- Symbol Column -->
+                  <ng-container matColumnDef="teacher">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Docente </th>
+                    <td mat-cell *matCellDef="let element"> {{element.teacher}} </td>
+                  </ng-container>
+                
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+              </mat-expansion-panel>
+            </mat-accordion>
+            
+            </mat-card>
+
+
+            <mat-card>
+              <mat-accordion>
+                <mat-expansion-panel hideToggle>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      Viernes
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <table mat-table #table [dataSource]="manufactureClassesFromThatDay('Viernes')" matSort >
+              
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="weekday">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Día </th>
+                      <td mat-cell *matCellDef="let element"> {{element.weekday}} </td>
+                    </ng-container>
+                  
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="startHour">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de entrada </th>
+                      <td mat-cell *matCellDef="let element"> {{element.startHour}}:00 </td>
+                    </ng-container>
+                
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="endHour">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de salida </th>
+                        <td mat-cell *matCellDef="let element"> {{element.endHour}}:00 </td>
+                      </ng-container>
+                  
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="className">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Clase </th>
+                      <td mat-cell *matCellDef="let element"> {{element.className}} </td>
+                    </ng-container>
+                  
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="teacher">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Docente </th>
+                      <td mat-cell *matCellDef="let element"> {{element.teacher}} </td>
+                    </ng-container>
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table>
+                </mat-expansion-panel>
+              </mat-accordion>
+              
+              </mat-card>
+  </mat-tab>
+
+
+
+
+
+
+  <mat-tab label="Termodinámica">
+    <mat-card>
+      <mat-card-title>Termodinámica</mat-card-title>
+      <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Lunes
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <table mat-table #table [dataSource]="thermoClassesFromThatDay('Lunes')" matSort>
+    
+            <!-- Position Column -->
+            <ng-container matColumnDef="weekday">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Día </th>
+              <td mat-cell *matCellDef="let element"> {{element.weekday}} </td>
+            </ng-container>
+    
+            <!-- Name Column -->
+            <ng-container matColumnDef="startHour">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de entrada </th>
+              <td mat-cell *matCellDef="let element"> {{element.startHour}}:00 </td>
+            </ng-container>
+    
+            <!-- Weight Column -->
+            <ng-container matColumnDef="endHour">
               <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de salida </th>
               <td mat-cell *matCellDef="let element"> {{element.endHour}}:00 </td>
             </ng-container>
-        
-          <!-- Weight Column -->
-          <ng-container matColumnDef="className">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Clase </th>
-            <td mat-cell *matCellDef="let element"> {{element.className}} </td>
-          </ng-container>
-        
-          <!-- Symbol Column -->
-          <ng-container matColumnDef="teacher">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Docente </th>
-            <td mat-cell *matCellDef="let element"> {{element.teacher}} </td>
-          </ng-container>
-        
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-      </mat-card>
-  </mat-tab>
-
-
-
-
-
-
-  <mat-tab label="Second">Content 2
+    
+            <!-- Weight Column -->
+            <ng-container matColumnDef="className">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Clase </th>
+              <td mat-cell *matCellDef="let element"> {{element.className}} </td>
+            </ng-container>
+    
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="teacher">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Docente </th>
+              <td mat-cell *matCellDef="let element"> {{element.teacher}} </td>
+            </ng-container>
+    
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </mat-expansion-panel>
+      </mat-accordion>
+    
+    </mat-card>
+    
     <mat-card>
-      <mat-card-title>Termo</mat-card-title>
-  
-    <table mat-table #table [dataSource]="dataSourceThermo" matSort >
-  
-      <!-- Position Column -->
-      <ng-container matColumnDef="weekday" class="column">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Día </th>
-        <td mat-cell *matCellDef="let element"> {{element.weekday}} </td>
-      </ng-container>
+      <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Martes
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <table mat-table #table [dataSource]="thermoClassesFromThatDay('Martes')" matSort>
     
-      <!-- Name Column -->
-      <ng-container matColumnDef="startHour">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de entrada </th>
-        <td mat-cell *matCellDef="let element"> {{element.startHour}}:00 </td>
-      </ng-container>
-  
-      <!-- Weight Column -->
-      <ng-container matColumnDef="endHour">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de salida </th>
-          <td mat-cell *matCellDef="let element"> {{element.endHour}}:00 </td>
-        </ng-container>
+            <!-- Position Column -->
+            <ng-container matColumnDef="weekday">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Día </th>
+              <td mat-cell *matCellDef="let element"> {{element.weekday}} </td>
+            </ng-container>
     
-      <!-- Weight Column -->
-      <ng-container matColumnDef="className">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Clase </th>
-        <td mat-cell *matCellDef="let element"> {{element.className}} </td>
-      </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="startHour">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de entrada </th>
+              <td mat-cell *matCellDef="let element"> {{element.startHour}}:00 </td>
+            </ng-container>
     
-      <!-- Symbol Column -->
-      <ng-container matColumnDef="teacher">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Docente </th>
-        <td mat-cell *matCellDef="let element"> {{element.teacher}} </td>
-      </ng-container>
+            <!-- Weight Column -->
+            <ng-container matColumnDef="endHour">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de salida </th>
+              <td mat-cell *matCellDef="let element"> {{element.endHour}}:00 </td>
+            </ng-container>
     
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-  </mat-card>
-  </mat-tab>
-
-
-
-
-
-
-
-  
-  <mat-tab label="Third">Content 3
+            <!-- Weight Column -->
+            <ng-container matColumnDef="className">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Clase </th>
+              <td mat-cell *matCellDef="let element"> {{element.className}} </td>
+            </ng-container>
     
-  <mat-card>
-    <mat-card-title>Diseño</mat-card-title>
-  <table mat-table #table [dataSource]="dataSourceDesign" matSort >
-
-    <!-- Position Column -->
-    <ng-container matColumnDef="weekday">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Día </th>
-      <td mat-cell *matCellDef="let element"> {{element.weekday}} </td>
-    </ng-container>
-  
-    <!-- Name Column -->
-    <ng-container matColumnDef="startHour">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de entrada </th>
-      <td mat-cell *matCellDef="let element"> {{element.startHour}}:00 </td>
-    </ng-container>
-
-    <!-- Weight Column -->
-    <ng-container matColumnDef="endHour">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de salida </th>
-        <td mat-cell *matCellDef="let element"> {{element.endHour}}:00 </td>
-      </ng-container>
-  
-    <!-- Weight Column -->
-    <ng-container matColumnDef="className">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Clase </th>
-      <td mat-cell *matCellDef="let element"> {{element.className}} </td>
-    </ng-container>
-  
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="teacher">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Docente </th>
-      <td mat-cell *matCellDef="let element"> {{element.teacher}} </td>
-    </ng-container>
-  
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-</mat-card>
-  </mat-tab>
-
-
-
-
-
-
-  
-  <mat-tab label="Third">Content 4
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="teacher">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Docente </th>
+              <td mat-cell *matCellDef="let element"> {{element.teacher}} </td>
+            </ng-container>
+    
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </mat-expansion-panel>
+      </mat-accordion>
+    
+    </mat-card>
+    
     <mat-card>
-      <mat-card-title>Fluids</mat-card-title>
-      
-    <table mat-table #table [dataSource]="dataSourceFluids" matSort >
+      <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Miércoles
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <table mat-table #table [dataSource]="thermoClassesFromThatDay('Miercoles')" matSort>
+    
+            <!-- Position Column -->
+            <ng-container matColumnDef="weekday">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Día </th>
+              <td mat-cell *matCellDef="let element"> {{element.weekday}} </td>
+            </ng-container>
+    
+            <!-- Name Column -->
+            <ng-container matColumnDef="startHour">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de entrada </th>
+              <td mat-cell *matCellDef="let element"> {{element.startHour}}:00 </td>
+            </ng-container>
+    
+            <!-- Weight Column -->
+            <ng-container matColumnDef="endHour">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de salida </th>
+              <td mat-cell *matCellDef="let element"> {{element.endHour}}:00 </td>
+            </ng-container>
+    
+            <!-- Weight Column -->
+            <ng-container matColumnDef="className">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Clase </th>
+              <td mat-cell *matCellDef="let element"> {{element.className}} </td>
+            </ng-container>
+    
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="teacher">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Docente </th>
+              <td mat-cell *matCellDef="let element"> {{element.teacher}} </td>
+            </ng-container>
+    
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </mat-expansion-panel>
+      </mat-accordion>
+    
+    </mat-card>
+
+    <mat-card>
+      <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Jueves
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <table mat-table #table [dataSource]="thermoClassesFromThatDay('jueves')" matSort>
+    
+            <!-- Position Column -->
+            <ng-container matColumnDef="weekday">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Día </th>
+              <td mat-cell *matCellDef="let element"> {{element.weekday}} </td>
+            </ng-container>
+    
+            <!-- Name Column -->
+            <ng-container matColumnDef="startHour">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de entrada </th>
+              <td mat-cell *matCellDef="let element"> {{element.startHour}}:00 </td>
+            </ng-container>
+    
+            <!-- Weight Column -->
+            <ng-container matColumnDef="endHour">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de salida </th>
+              <td mat-cell *matCellDef="let element"> {{element.endHour}}:00 </td>
+            </ng-container>
+    
+            <!-- Weight Column -->
+            <ng-container matColumnDef="className">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Clase </th>
+              <td mat-cell *matCellDef="let element"> {{element.className}} </td>
+            </ng-container>
+    
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="teacher">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Docente </th>
+              <td mat-cell *matCellDef="let element"> {{element.teacher}} </td>
+            </ng-container>
+    
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </mat-expansion-panel>
+      </mat-accordion>
+    
+    </mat-card>
+    
+    <mat-card>
+      <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Viernes
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <table mat-table #table [dataSource]="thermoClassesFromThatDay('Viernes')" matSort>
+    
+            <!-- Position Column -->
+            <ng-container matColumnDef="weekday">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Día </th>
+              <td mat-cell *matCellDef="let element"> {{element.weekday}} </td>
+            </ng-container>
+    
+            <!-- Name Column -->
+            <ng-container matColumnDef="startHour">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de entrada </th>
+              <td mat-cell *matCellDef="let element"> {{element.startHour}}:00 </td>
+            </ng-container>
+    
+            <!-- Weight Column -->
+            <ng-container matColumnDef="endHour">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de salida </th>
+              <td mat-cell *matCellDef="let element"> {{element.endHour}}:00 </td>
+            </ng-container>
+    
+            <!-- Weight Column -->
+            <ng-container matColumnDef="className">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Clase </th>
+              <td mat-cell *matCellDef="let element"> {{element.className}} </td>
+            </ng-container>
+    
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="teacher">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Docente </th>
+              <td mat-cell *matCellDef="let element"> {{element.teacher}} </td>
+            </ng-container>
+    
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </mat-expansion-panel>
+      </mat-accordion>
+    
+    </mat-card>
+  </mat-tab>
+
+
+
+
+
+
+
   
-      <!-- Position Column -->
-      <ng-container matColumnDef="weekday" class="column">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Día </th>
-        <td mat-cell *matCellDef="let element"> {{element.weekday}} </td>
-      </ng-container>
+  <mat-tab label="Diseño">
+    <mat-card>
+      <mat-card-title>Diseño</mat-card-title>
+      <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Lunes
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <table mat-table #table [dataSource]="designClassesFromThatDay('Lunes')" matSort>
     
-      <!-- Name Column -->
-      <ng-container matColumnDef="startHour">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de entrada </th>
-        <td mat-cell *matCellDef="let element"> {{element.startHour}}:00 </td>
-      </ng-container>
-  
-      <!-- Weight Column -->
-      <ng-container matColumnDef="endHour">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de salida </th>
-          <td mat-cell *matCellDef="let element"> {{element.endHour}}:00 </td>
-        </ng-container>
+            <!-- Position Column -->
+            <ng-container matColumnDef="weekday">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Día </th>
+              <td mat-cell *matCellDef="let element"> {{element.weekday}} </td>
+            </ng-container>
     
-      <!-- Weight Column -->
-      <ng-container matColumnDef="className">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Clase </th>
-        <td mat-cell *matCellDef="let element"> {{element.className}} </td>
-      </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="startHour">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de entrada </th>
+              <td mat-cell *matCellDef="let element"> {{element.startHour}}:00 </td>
+            </ng-container>
     
-      <!-- Symbol Column -->
-      <ng-container matColumnDef="teacher">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Docente </th>
-        <td mat-cell *matCellDef="let element"> {{element.teacher}} </td>
-      </ng-container>
+            <!-- Weight Column -->
+            <ng-container matColumnDef="endHour">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de salida </th>
+              <td mat-cell *matCellDef="let element"> {{element.endHour}}:00 </td>
+            </ng-container>
     
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-  </mat-card>
+            <!-- Weight Column -->
+            <ng-container matColumnDef="className">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Clase </th>
+              <td mat-cell *matCellDef="let element"> {{element.className}} </td>
+            </ng-container>
+    
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="teacher">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Docente </th>
+              <td mat-cell *matCellDef="let element"> {{element.teacher}} </td>
+            </ng-container>
+    
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </mat-expansion-panel>
+      </mat-accordion>
+    
+    </mat-card>
+    
+    <mat-card>
+      <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Martes
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <table mat-table #table [dataSource]="designClassesFromThatDay('Martes')" matSort>
+    
+            <!-- Position Column -->
+            <ng-container matColumnDef="weekday">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Día </th>
+              <td mat-cell *matCellDef="let element"> {{element.weekday}} </td>
+            </ng-container>
+    
+            <!-- Name Column -->
+            <ng-container matColumnDef="startHour">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de entrada </th>
+              <td mat-cell *matCellDef="let element"> {{element.startHour}}:00 </td>
+            </ng-container>
+    
+            <!-- Weight Column -->
+            <ng-container matColumnDef="endHour">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de salida </th>
+              <td mat-cell *matCellDef="let element"> {{element.endHour}}:00 </td>
+            </ng-container>
+    
+            <!-- Weight Column -->
+            <ng-container matColumnDef="className">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Clase </th>
+              <td mat-cell *matCellDef="let element"> {{element.className}} </td>
+            </ng-container>
+    
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="teacher">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Docente </th>
+              <td mat-cell *matCellDef="let element"> {{element.teacher}} </td>
+            </ng-container>
+    
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </mat-expansion-panel>
+      </mat-accordion>
+    
+    </mat-card>
+    
+    <mat-card>
+      <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Miércoles
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <table mat-table #table [dataSource]="designClassesFromThatDay('Miercoles')" matSort>
+    
+            <!-- Position Column -->
+            <ng-container matColumnDef="weekday">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Día </th>
+              <td mat-cell *matCellDef="let element"> {{element.weekday}} </td>
+            </ng-container>
+    
+            <!-- Name Column -->
+            <ng-container matColumnDef="startHour">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de entrada </th>
+              <td mat-cell *matCellDef="let element"> {{element.startHour}}:00 </td>
+            </ng-container>
+    
+            <!-- Weight Column -->
+            <ng-container matColumnDef="endHour">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de salida </th>
+              <td mat-cell *matCellDef="let element"> {{element.endHour}}:00 </td>
+            </ng-container>
+    
+            <!-- Weight Column -->
+            <ng-container matColumnDef="className">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Clase </th>
+              <td mat-cell *matCellDef="let element"> {{element.className}} </td>
+            </ng-container>
+    
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="teacher">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Docente </th>
+              <td mat-cell *matCellDef="let element"> {{element.teacher}} </td>
+            </ng-container>
+    
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </mat-expansion-panel>
+      </mat-accordion>
+    
+    </mat-card>
+
+    <mat-card>
+      <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Jueves
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <table mat-table #table [dataSource]="designClassesFromThatDay('jueves')" matSort>
+    
+            <!-- Position Column -->
+            <ng-container matColumnDef="weekday">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Día </th>
+              <td mat-cell *matCellDef="let element"> {{element.weekday}} </td>
+            </ng-container>
+    
+            <!-- Name Column -->
+            <ng-container matColumnDef="startHour">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de entrada </th>
+              <td mat-cell *matCellDef="let element"> {{element.startHour}}:00 </td>
+            </ng-container>
+    
+            <!-- Weight Column -->
+            <ng-container matColumnDef="endHour">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de salida </th>
+              <td mat-cell *matCellDef="let element"> {{element.endHour}}:00 </td>
+            </ng-container>
+    
+            <!-- Weight Column -->
+            <ng-container matColumnDef="className">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Clase </th>
+              <td mat-cell *matCellDef="let element"> {{element.className}} </td>
+            </ng-container>
+    
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="teacher">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Docente </th>
+              <td mat-cell *matCellDef="let element"> {{element.teacher}} </td>
+            </ng-container>
+    
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </mat-expansion-panel>
+      </mat-accordion>
+    
+    </mat-card>
+    
+    <mat-card>
+      <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Viernes
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <table mat-table #table [dataSource]="designClassesFromThatDay('Viernes')" matSort>
+    
+            <!-- Position Column -->
+            <ng-container matColumnDef="weekday">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Día </th>
+              <td mat-cell *matCellDef="let element"> {{element.weekday}} </td>
+            </ng-container>
+    
+            <!-- Name Column -->
+            <ng-container matColumnDef="startHour">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de entrada </th>
+              <td mat-cell *matCellDef="let element"> {{element.startHour}}:00 </td>
+            </ng-container>
+    
+            <!-- Weight Column -->
+            <ng-container matColumnDef="endHour">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de salida </th>
+              <td mat-cell *matCellDef="let element"> {{element.endHour}}:00 </td>
+            </ng-container>
+    
+            <!-- Weight Column -->
+            <ng-container matColumnDef="className">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Clase </th>
+              <td mat-cell *matCellDef="let element"> {{element.className}} </td>
+            </ng-container>
+    
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="teacher">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Docente </th>
+              <td mat-cell *matCellDef="let element"> {{element.teacher}} </td>
+            </ng-container>
+    
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </mat-expansion-panel>
+      </mat-accordion>
+    
+    </mat-card>
   
   </mat-tab>
-  <mat-tab label="Third"> Content 3 </mat-tab>  <mat-tab label="Third"> Content 3 </mat-tab>  <mat-tab label="Third"> Content 3 </mat-tab>  <mat-tab label="Third"> Content 3 </mat-tab>  <mat-tab label="Third"> Content 3 </mat-tab>  <mat-tab label="Third"> Content 3 </mat-tab>  <mat-tab label="Third"> Content 3 </mat-tab>
+
+
+
+
+
+
+  
+  <mat-tab label="Mecánica de fluidos">
+    <mat-card>
+      <mat-card-title>Mecánica de fluidos</mat-card-title>
+      <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Lunes
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <table mat-table #table [dataSource]="fluidsClassesFromThatDay('Lunes')" matSort>
+    
+            <!-- Position Column -->
+            <ng-container matColumnDef="weekday">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Día </th>
+              <td mat-cell *matCellDef="let element"> {{element.weekday}} </td>
+            </ng-container>
+    
+            <!-- Name Column -->
+            <ng-container matColumnDef="startHour">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de entrada </th>
+              <td mat-cell *matCellDef="let element"> {{element.startHour}}:00 </td>
+            </ng-container>
+    
+            <!-- Weight Column -->
+            <ng-container matColumnDef="endHour">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de salida </th>
+              <td mat-cell *matCellDef="let element"> {{element.endHour}}:00 </td>
+            </ng-container>
+    
+            <!-- Weight Column -->
+            <ng-container matColumnDef="className">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Clase </th>
+              <td mat-cell *matCellDef="let element"> {{element.className}} </td>
+            </ng-container>
+    
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="teacher">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Docente </th>
+              <td mat-cell *matCellDef="let element"> {{element.teacher}} </td>
+            </ng-container>
+    
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </mat-expansion-panel>
+      </mat-accordion>
+    
+    </mat-card>
+    
+    <mat-card>
+      <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Martes
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <table mat-table #table [dataSource]="fluidsClassesFromThatDay('Martes')" matSort>
+    
+            <!-- Position Column -->
+            <ng-container matColumnDef="weekday">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Día </th>
+              <td mat-cell *matCellDef="let element"> {{element.weekday}} </td>
+            </ng-container>
+    
+            <!-- Name Column -->
+            <ng-container matColumnDef="startHour">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de entrada </th>
+              <td mat-cell *matCellDef="let element"> {{element.startHour}}:00 </td>
+            </ng-container>
+    
+            <!-- Weight Column -->
+            <ng-container matColumnDef="endHour">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de salida </th>
+              <td mat-cell *matCellDef="let element"> {{element.endHour}}:00 </td>
+            </ng-container>
+    
+            <!-- Weight Column -->
+            <ng-container matColumnDef="className">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Clase </th>
+              <td mat-cell *matCellDef="let element"> {{element.className}} </td>
+            </ng-container>
+    
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="teacher">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Docente </th>
+              <td mat-cell *matCellDef="let element"> {{element.teacher}} </td>
+            </ng-container>
+    
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </mat-expansion-panel>
+      </mat-accordion>
+    
+    </mat-card>
+    
+    <mat-card>
+      <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Miércoles
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <table mat-table #table [dataSource]="fluidsClassesFromThatDay('Miercoles')" matSort>
+    
+            <!-- Position Column -->
+            <ng-container matColumnDef="weekday">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Día </th>
+              <td mat-cell *matCellDef="let element"> {{element.weekday}} </td>
+            </ng-container>
+    
+            <!-- Name Column -->
+            <ng-container matColumnDef="startHour">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de entrada </th>
+              <td mat-cell *matCellDef="let element"> {{element.startHour}}:00 </td>
+            </ng-container>
+    
+            <!-- Weight Column -->
+            <ng-container matColumnDef="endHour">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de salida </th>
+              <td mat-cell *matCellDef="let element"> {{element.endHour}}:00 </td>
+            </ng-container>
+    
+            <!-- Weight Column -->
+            <ng-container matColumnDef="className">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Clase </th>
+              <td mat-cell *matCellDef="let element"> {{element.className}} </td>
+            </ng-container>
+    
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="teacher">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Docente </th>
+              <td mat-cell *matCellDef="let element"> {{element.teacher}} </td>
+            </ng-container>
+    
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </mat-expansion-panel>
+      </mat-accordion>
+    
+    </mat-card>
+
+    <mat-card>
+      <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Jueves
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <table mat-table #table [dataSource]="fluidsClassesFromThatDay('jueves')" matSort>
+    
+            <!-- Position Column -->
+            <ng-container matColumnDef="weekday">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Día </th>
+              <td mat-cell *matCellDef="let element"> {{element.weekday}} </td>
+            </ng-container>
+    
+            <!-- Name Column -->
+            <ng-container matColumnDef="startHour">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de entrada </th>
+              <td mat-cell *matCellDef="let element"> {{element.startHour}}:00 </td>
+            </ng-container>
+    
+            <!-- Weight Column -->
+            <ng-container matColumnDef="endHour">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de salida </th>
+              <td mat-cell *matCellDef="let element"> {{element.endHour}}:00 </td>
+            </ng-container>
+    
+            <!-- Weight Column -->
+            <ng-container matColumnDef="className">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Clase </th>
+              <td mat-cell *matCellDef="let element"> {{element.className}} </td>
+            </ng-container>
+    
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="teacher">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Docente </th>
+              <td mat-cell *matCellDef="let element"> {{element.teacher}} </td>
+            </ng-container>
+    
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </mat-expansion-panel>
+      </mat-accordion>
+    
+    </mat-card>
+    
+    <mat-card>
+      <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Viernes
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <table mat-table #table [dataSource]="fluidsClassesFromThatDay('Viernes')" matSort>
+    
+            <!-- Position Column -->
+            <ng-container matColumnDef="weekday">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Día </th>
+              <td mat-cell *matCellDef="let element"> {{element.weekday}} </td>
+            </ng-container>
+    
+            <!-- Name Column -->
+            <ng-container matColumnDef="startHour">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de entrada </th>
+              <td mat-cell *matCellDef="let element"> {{element.startHour}}:00 </td>
+            </ng-container>
+    
+            <!-- Weight Column -->
+            <ng-container matColumnDef="endHour">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de salida </th>
+              <td mat-cell *matCellDef="let element"> {{element.endHour}}:00 </td>
+            </ng-container>
+    
+            <!-- Weight Column -->
+            <ng-container matColumnDef="className">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Clase </th>
+              <td mat-cell *matCellDef="let element"> {{element.className}} </td>
+            </ng-container>
+    
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="teacher">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Docente </th>
+              <td mat-cell *matCellDef="let element"> {{element.teacher}} </td>
+            </ng-container>
+    
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </mat-expansion-panel>
+      </mat-accordion>
+    
+    </mat-card>
+  
+  </mat-tab>
+
+
+
+  <mat-tab label="Extra"></mat-tab>  
+  <mat-tab label="Extra"></mat-tab>  
+  <mat-tab label="Extra"></mat-tab>  
+  <mat-tab label="Extra"></mat-tab>  
+  <mat-tab label="Extra"></mat-tab>  
+  <mat-tab label="Extra"></mat-tab>  
+  <mat-tab label="Extra"></mat-tab>
 
 
 
 
 </mat-tab-group>
+
+
+
+
 </div>
 
 

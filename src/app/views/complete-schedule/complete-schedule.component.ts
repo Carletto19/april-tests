@@ -27,4 +27,32 @@ export class CompleteScheduleComponent implements OnInit {
   dataSourceThermo = new MatTableDataSource(this.THERMO_ARRAY);
   dataSourceFluids = new MatTableDataSource(this.FLUIDS_ARRAY);
 
+
+  manufactureClassesFromThatDay(day: string) {
+
+    this.dataSourceManufacture = new MatTableDataSource(this.MANUFACTURE_ARRAY.filter(x => x.weekday == day));  
+    return this.dataSourceManufacture;
+  }
+
+  
+
+  thermoClassesFromThatDay(day: string) {
+    this.dataSourceThermo = new MatTableDataSource(this.THERMO_ARRAY.filter(x => x.weekday == day));  
+    return this.dataSourceThermo;
+  }
+
+  designClassesFromThatDay(day: string) {
+    this.dataSourceDesign = new MatTableDataSource(this.DESIGN_ARRAY.filter(x => x.weekday == day));  
+    return this.dataSourceDesign;
+  }
+
+  fluidsClassesFromThatDay(day: string) {
+    this.dataSourceFluids = new MatTableDataSource(this.FLUIDS_ARRAY.filter(x => x.weekday == day));  
+    return this.dataSourceFluids;
+  }
+
+
+
+
+
 }

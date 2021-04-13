@@ -4,7 +4,7 @@
 
   <mat-form-field class="example-full-width">
     <mat-label>Nombre</mat-label>
-    <input matInput placeholder="Nahomy" type="text" formControlName="firstName"
+    <input matInput placeholder="Luis Carlos" type="text" formControlName="firstName"
       [ngClass]="validationStyles.inputStyle(firstNameInput)">
     <small *ngIf="validationStyles.requiredPrecaution(firstNameInput)" class="text-danger">Este espacio es requerido</small>
     <small *ngIf="validationStyles.namesPatternPrecaution(firstNameInput)" class="text-danger">Por favor ingrese un nombre válido</small>

@@ -90,7 +90,7 @@ dataInput() {
     const user =  this.authentication.signUp(data.email, data.password);
 
     if(user){
-      this.route.navigate(['/scheduleHome']);
+      this.route.navigate(['/sendVerificationEmail']);
     }
   }
 

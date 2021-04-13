@@ -23,6 +23,7 @@ import { MatTableModule } from '@angular/material/table'
 import {MatCardModule} from '@angular/material/card';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 
@@ -50,6 +51,7 @@ import { DialogContentFluids } from './shared/dialog/dialog.component';
 import { ChatComponent } from './views/chat/chat.component';
 import { CompleteScheduleComponent } from './views/complete-schedule/complete-schedule.component';
 import { ChatComponentContent } from './views/chat/chat.component';
+import { SendEmailComponent } from './views/send-email/send-email.component';
 
 
 
@@ -71,6 +73,7 @@ import { ChatComponentContent } from './views/chat/chat.component';
     ChatComponent,
     ChatComponentContent,
     CompleteScheduleComponent,
+    SendEmailComponent,
 
   ],
   imports: [
@@ -101,6 +104,7 @@ import { ChatComponentContent } from './views/chat/chat.component';
     MatTableModule,
     MatCardModule,
     MatTabsModule,
+    MatExpansionModule,
     // Time
   ],
   providers: [AuthService],

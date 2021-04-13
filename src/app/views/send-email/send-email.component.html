@@ -1,0 +1,14 @@
+<div *ngIf="user$ | async as user; else loading"><p>send-email works!</p>
+
+<h2>¡Gracias por registrarte  {{ user?.email }} ! </h2>
+
+<p>Hemos enviado un email de verificación al correo </p>
+
+<p>Por favor revisa tu bandeja de entrada para continuar con tu registro</p>
+
+<button (click)="resendEmail()">Reenviar correo de verificación</button>
+</div>
+
+<ng-template #loading>
+
+</ng-template>
