@@ -41,6 +41,7 @@ export class ScheduleMapComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
+    this._authService.isChatApproved()
       setInterval(() => {
         const time = new Date;
         this.seconds = time.getSeconds();

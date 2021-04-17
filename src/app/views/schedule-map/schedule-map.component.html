@@ -1,5 +1,5 @@
 
-<mat-card color="accent" >Son las {{changeHourFormat()}} y las clases en los laboratorios son: <button (click)="this._authService.approved">Clcik</button> </mat-card>
+<mat-card color="accent" >Son las {{changeHourFormat()}} y las clases en los laboratorios son: <button (click)="this._authService.isChatApproved()">Clcik</button> </mat-card>
 <!-- <mat-card color="accent">Son las {{changeHourFormat()}} y las clases en los laboratorios son: </mat-card> -->
 
 
@@ -130,4 +130,4 @@
     </mat-grid-tile> 
 
 
-    <app-chat *ngIf="this.mainNavComponent.isLogged"></app-chat>
+    <app-chat *ngIf="this._authService.chatApproval | async"></app-chat>

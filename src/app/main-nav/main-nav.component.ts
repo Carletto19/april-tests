@@ -62,45 +62,30 @@ export class MainNavComponent implements OnInit, OnDestroy {
 
 
   obtenerUsuarios() {
+
+    this.user$.subscribe(result => {console.log(result)})
     this.databaseSubscription = this.registerDatabase.getUser().subscribe(userArray => {
       userArray.map((element: any) => {
-        console.log({
-          nombre: element.payload.doc.data().firstName,
-          apellido: element.payload.doc.data().lastName,
-          email: element.payload.doc.data().email,
-        }
-        )
+        // console.log({
+        //   nombre: element.payload.doc.data().firstName,
+        //   apellido: element.payload.doc.data().lastName,
+        //   email: element.payload.doc.data().email,
+        // }
+        // )
       });
     },
       error => { console.error('ERROR'), error }
     )
   }
 
-  // obtenerUsuarios(){
-  //   this.databaseSubscription = this.registerDatabase.getUser().subscribe(data => {
-  //     console.log(data);
-  //   },
-  // error=>{console.error('ERROR'), error}
-  // )
-  // }
-
-
-  // obtenerUsuarios(){
-  //   this.databaseSubscription = this.registerDatabase.getUser().subscribe();
-  // }
-
 
   ngOnDestroy() {
-    // this.authSubscription.unsubscribe();
-    // this.databaseSubscription.unsubscribe();
-
   }
 
   onSignOut() {
     this.isLogged = false;
     this._authService.logOut();
-    // this._authService.subjectApproved.unsubscribe();
-    // this.authSubscription.unsubscribe();
+
   }
 
 

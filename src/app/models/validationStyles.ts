@@ -18,7 +18,7 @@ export class ValidationStyles {
     }
 
     emailPatternPrecaution(input: AbstractControl) {
-        if (input.errors?.email && input.touched) {
+        if (input.errors?.pattern && input.touched) {
             return true;
         }
         return;

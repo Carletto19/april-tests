@@ -4,7 +4,7 @@
 
   <mat-form-field class="example-full-width">
     <mat-label>Nombre</mat-label>
-    <input matInput placeholder="Luis Carlos" type="text" formControlName="firstName"
+    <input matInput placeholder="Marlenn" type="text" formControlName="firstName"
       [ngClass]="validationStyles.inputStyle(firstNameInput)">
     <small *ngIf="validationStyles.requiredPrecaution(firstNameInput)" class="text-danger">Este espacio es requerido</small>
     <small *ngIf="validationStyles.namesPatternPrecaution(firstNameInput)" class="text-danger">Por favor ingrese un nombre válido</small>
@@ -22,7 +22,7 @@
     <mat-label>Correo electrónico</mat-label>
     <input matInput placeholder="ejemplo@uabc.edu.mx" type="email" formControlName="email" [ngClass]="validationStyles.inputStyle(emailInput)">
     <small *ngIf="validationStyles.requiredPrecaution(emailInput)" class="text-danger">Este espacio es requerido</small>
-    <small *ngIf="validationStyles.emailPatternPrecaution(emailInput)" class="text-danger">Por favor ingresa un correo electrónico válido</small>
+    <small *ngIf="validationStyles.emailPatternPrecaution(emailInput)" class="text-danger">Por favor ingresa utilice correo UABC</small>
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
@@ -40,6 +40,8 @@
     </mat-select>
   </mat-form-field>
 
+  <a></a>
+  
   <div>
     <button mat-raised-button color="accent" type="submit">Registrar</button>
   </div>

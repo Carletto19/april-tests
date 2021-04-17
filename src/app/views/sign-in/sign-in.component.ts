@@ -47,17 +47,6 @@ export class SignInComponent implements OnInit, OnDestroy{
 
   public approvedSubscription: Subscription;
   ngOnInit(): void {
-    // this.approvedSubscription = this._authentication.approved.subscribe();
-    // this.approvedSubscription = this._authentication.subjectApproved.subscribe(v => console.log(v));
-    // console.log(this.approvedSubscription);
-    // if(this.approvedSubscription){
-    // console.log('Existe');
-    // }
-
-    // console.log(this.signInApproved);
-    // console.log(this._authentication.subjectApproved.getValue());
-    
-    // this._authentication.subjectApproved.subscribe();
   }
 
   signInDataInput() {
@@ -74,12 +63,10 @@ export class SignInComponent implements OnInit, OnDestroy{
   onSubmit() {
 
     const signInData = this.signInDataInput();
-  //   this.approvedSubscription = this._authentication.subjectApproved.subscribe(/*result =>{result = this.signInApproved; console.log(result);}*/);
 
-    // console.log(this.approvedSubscription);
-    // this._authentication.subjectApproved.subscribe();
 
-    const user = this._authentication.signIn(this.emailInput.value, this.passwordInput.value);
+
+    this._authentication.signIn(this.emailInput.value, this.passwordInput.value);
 
     this._authentication.subjectApproved.asObservable().pipe(first()).subscribe(v=> { 
       console.log(v); 
