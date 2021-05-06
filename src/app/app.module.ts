@@ -107,7 +107,7 @@ import { SendEmailComponent } from './views/send-email/send-email.component';
     MatExpansionModule,
     // Time
   ],
-  providers: [AuthService],
+  providers: [AuthService, ChatComponentContent],
   bootstrap: [AppComponent],
   entryComponents: [DialogComponent]
 })

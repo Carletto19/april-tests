@@ -8,6 +8,8 @@ import { WeekdayArray } from '../schedule-map/weekdayArrayClass';
 import { AuthService } from '../../data-services/auth.service'; 
 import { MainNavComponent } from '../../main-nav/main-nav.component';
 import { ChatComponentContent } from '../../views/chat/chat.component';
+import { StudyRoomService } from 'src/app/data-services/study-room.service';
+import { first } from 'rxjs/operators';
 
 
 
@@ -25,7 +27,8 @@ export class ScheduleMapComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     public _authService: AuthService,
     public mainNavComponent: MainNavComponent,
-    // public chatComponentContent: ChatComponentContent,
+    public chatComponentContent: ChatComponentContent,
+    public _studyRoom: StudyRoomService
     ) 
   {
     this.dialogBox = new DialogComponent(dialog);
@@ -36,11 +39,18 @@ export class ScheduleMapComponent implements OnInit, OnDestroy {
   minutes: Number;
   seconds: Number;
   day: Number;
+  peopleNumber: Number = 13;
+  botoncito(){
+    this._studyRoom.peopleInRoom().pipe(first()).subscribe(result=>{
+      console.log(result[0]);
+    }
+    );
+  }
 
   name: string;
 
-  ngOnInit() {
-
+  ngOnInit() {                                                          
+    this.chatComponentContent.deleteMessageAfter2Hours();
     this._authService.isChatApproved()
       setInterval(() => {
         const time = new Date;
@@ -118,15 +128,7 @@ export class ScheduleMapComponent implements OnInit, OnDestroy {
     const LAB_DATA = this.selectLabDataArray(name);
 
     dayClasses = LAB_DATA.filter(x => x.weekday == this.weekdayName());
-    // for (let i = 0; i < LAB_DATA.length; i++) {
-    //   if (this.weekdayName() == LAB_DATA[i].weekday) {
 
-    //     dayClasses.push(LAB_DATA[i]);
-
-    //   }
-    // }
-
-    // ^^^^^^^ everything from above can be done by using .filter (106,112) ^^^^^^
 
     return dayClasses;
   }
@@ -245,6 +247,39 @@ export class ScheduleMapComponent implements OnInit, OnDestroy {
     // }
 
 
+  }
+
+  studyRoomColor(){
+    if (this.peopleNumber <= 3) {
+      const buttonStyles = {
+        'background-color': 'rgb(76, 175, 80)'
+      };
+      return buttonStyles;
+    }
+    else if (this.peopleNumber > 3 && this.peopleNumber <= 7){
+      const buttonStyles = {
+        'background-color': 'rgb(174,	222,	62)'
+      };
+      return buttonStyles;
+    }
+    else if (this.peopleNumber > 7 && this.peopleNumber <= 10){
+      const buttonStyles = {
+        'background-color': 'rgb(255, 221, 60)'
+      };
+      return buttonStyles;
+    }
+    else if (this.peopleNumber > 10 && this.peopleNumber <= 15){
+      const buttonStyles = {
+        'background-color': 'rgb(	248, 87, 16)'
+      };
+      return buttonStyles;
+    }
+    else {
+      const buttonStyles = {
+        'background-color': 'rgb(244, 67, 54)'
+      };
+      return buttonStyles;
+    }
   }
 
 

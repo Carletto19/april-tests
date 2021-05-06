@@ -4,7 +4,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { filter, first } from 'rxjs/operators';
 import firebase from 'firebase/app';
 import { promise } from 'protractor';
-import { BehaviorSubject, Observable, of, Subscription } from 'rxjs'; 
+import { async, BehaviorSubject, Observable, of, Subscription } from 'rxjs'; 
 import { Subject } from 'rxjs'; 
 import { SignInComponent } from '../views/sign-in/sign-in.component';
 import { Router } from '@angular/router';
@@ -13,24 +13,22 @@ import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService implements OnChanges{
+export class AuthService implements OnInit{
 
   
   constructor(
     public angularAuth: AngularFireAuth,
     private route: Router,
-
   ) { }
 
-  ngOnChanges(){
-
+  ngOnInit(){
+    this.subjectApproved.next(false);
   }
 
 
 
   public subjectApproved = new Subject;
   public chatApproval = new BehaviorSubject<boolean>(false);
-  public aprobado: boolean = false;
   public chatSubscription: Subscription;
 
   isChatApproved(){
@@ -43,7 +41,6 @@ export class AuthService implements OnChanges{
       }
       else{ 
         this.chatApproval.next(false);
-        this.aprobado = false;
       };
     });
   }
@@ -55,6 +52,7 @@ export class AuthService implements OnChanges{
                                 if(result.user.emailVerified){
                                 console.log(result.user);
                                 this.chatApproval.next(true);
+                                this.subjectApproved.next(true);
                                 this.route.navigate(['/scheduleHome']);
                                 return true; }
                                 else {
@@ -70,18 +68,18 @@ export class AuthService implements OnChanges{
                                 return false; });
   }
 
-  signInVerified(email: string, password: string){
-    return this.angularAuth.signInWithEmailAndPassword(email, password).then((result) => { 
+  // signInVerified(email: string, password: string){
+  //   return this.angularAuth.signInWithEmailAndPassword(email, password).then((result) => { 
 
-      if(result.user.emailVerified){
-      console.log(result.user);
-      this.subjectApproved.next(true);
-      return true; }
-      else {
-        this.route.navigate(['/sendVerificationEmail']);
-      }
-    })
-  }
+  //     if(result.user.emailVerified){
+  //     console.log(result.user);
+  //     this.subjectApproved.next(true);
+  //     return true; }
+  //     else {
+  //       this.route.navigate(['/sendVerificationEmail']);
+  //     }
+  //   })
+  // }
 
 
   async signInVoid(email: string, password: string) {
@@ -110,7 +108,7 @@ export class AuthService implements OnChanges{
 
   logOut(): Promise<boolean> {
      return this.angularAuth.signOut()
-                            .then(() => { console.log('Cerraste sesión'); this.chatApproval.next(false); this.chatSubscription.unsubscribe(); return true})
+                            .then(() => {this.subjectApproved.next(false); console.log('Cerraste sesión'); this.chatApproval.next(false); this.chatSubscription.unsubscribe(); return true})
                             .catch((error) => { console.log(error); return false});
   
   }
@@ -120,6 +118,22 @@ export class AuthService implements OnChanges{
   }
 
 
+
+
+  public signedIn = new BehaviorSubject<boolean>(false);
+
+  isLogged(){
+    this.getCurrentUser().pipe(first()).subscribe(result => {
+      if(result && result.emailVerified){
+        this.signedIn.next(true);
+        this.signedIn.subscribe(result=> console.log(result));
+      } 
+      else{
+        this.signedIn.next(false);
+        this.signedIn.subscribe(result=> console.log(result));
+      }
+    });
+  }
 
   
 }

@@ -24,7 +24,7 @@ export class SignInComponent implements OnInit, OnDestroy{
 
   signInForm = this.fb.group({
     password: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]]
+    email: ['', [Validators.required/*, Validators.pattern('^[a-z0-9._%+-]+@uabc.edu.mx$')*/]]
   });
 
   time: Time;
@@ -32,8 +32,6 @@ export class SignInComponent implements OnInit, OnDestroy{
     private fb: FormBuilder, 
     private _authentication: AuthService,
     private route: Router,
-    private mainNav: MainNavComponent,
-    
     )
   {
     this.signInIdentificationService = new SignInIdentificationService();
@@ -41,7 +39,6 @@ export class SignInComponent implements OnInit, OnDestroy{
     this.time = new Time();
   }
   ngOnDestroy(): void {
-    // this._authentication.subjectApproved.unsubscribe();
   }
 
 
@@ -57,59 +54,32 @@ export class SignInComponent implements OnInit, OnDestroy{
     return signInData;
   }
 
-  
-  signInApproved: any = false;
-  signInSub: Subscription;
+
+  public isFormValid: boolean = true;
+  public userExists: boolean = true;
   onSubmit() {
-
-    const signInData = this.signInDataInput();
-
-
+    if (!this.signInForm.valid) {
+      this.isFormValid = false;
+      return;
+    }
+    
+    console.log(this.signInForm.valid);
 
     this._authentication.signIn(this.emailInput.value, this.passwordInput.value);
 
     this._authentication.subjectApproved.asObservable().pipe(first()).subscribe(v=> { 
       console.log(v); 
       if(v==false){
-        alert('Usuario y/o contraseña incorectos');
+        this.userExists = false;
+        //alert('Usuario y/o contraseña incorectos');
       }
       else if (v==true){
+        this.userExists = true;
         this.route.navigate(['/scheduleHome']);
       }
     });
 
 
-
-    // this.signInSub = this._authentication.subjectApproved.subscribe(v=> {this.signInApproved = v;});
-
-
-    // console.log(this.signInApproved);
-
-
-    // if(user) {
-    //   this.route.navigate(['/scheduleHome']); **************************
-    // // console.log('exists!');
-    // }
-
-
-
-
-    // else{
-    //   console.log('Doesnt exist!');
-    // }
-
-    // console.log(await this._authentication.approved);
-    // console.log(this._authentication.getCurrentUser());
-
-
-
-
-    // if(this._authentication.approved == true){
-    //   console.log('exists!');
-    // }
-    // else{
-    //   console.log('Doesnt exist!');
-    // }
 
   }
 

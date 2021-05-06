@@ -1,8 +1,5 @@
 
-<mat-card color="accent" >Son las {{changeHourFormat()}} y las clases en los laboratorios son: <button (click)="this._authService.isChatApproved()">Clcik</button> </mat-card>
-<!-- <mat-card color="accent">Son las {{changeHourFormat()}} y las clases en los laboratorios son: </mat-card> -->
-
-
+<mat-card color="accent" >Son las {{changeHourFormat()}} y las clases en los laboratorios son:</mat-card>
 
 <mat-grid-list cols="7" rowHeight="2:1">
 
@@ -26,18 +23,20 @@
       </button>
     </mat-grid-tile>
 
-   <mat-grid-tile colspan="1" rowspan="2" [ngStyle]="tileColor('design')">
+   <mat-grid-tile colspan="1" rowspan="2" [ngStyle]="studyRoomColor()">
+     <button (click)="botoncito()">Botoncito</button>
      <div class="text-inside-grid">
-       Diseño
+       Sala de estudio
     </div>
-    {{classStatus('design')}}
-    <button mat-mini-fab color="primary" class="tile-button" (click)="dialogBox.openDialog('design')">
-      <mat-icon>list</mat-icon>
-    </button>
+    <div class="people-number">
+      {{peopleNumber}}
+    </div>
+
+
   </mat-grid-tile>
 
 
-    <mat-grid-tile colspan="2" rowspan="2" [ngStyle]="tileColor('fluids')">
+    <mat-grid-tile colspan="1" rowspan="2" [ngStyle]="tileColor('fluids')">
       <div class="text-inside-grid">
         Taller de máquinas y herramientas
       </div>
@@ -47,9 +46,19 @@
       </button>
     </mat-grid-tile>
 
-    <mat-grid-tile colspan="1" rowspan="2" [ngStyle]="tileColor('fluids')">
+    <mat-grid-tile colspan="1" rowspan="2" [ngStyle]="tileColor('manufacture')">
       <div class="text-inside-grid">
         Laboratorio de ciencia de materiales
+      </div>
+      {{classStatus('manufacture')}}
+      <button mat-mini-fab color="primary" class="tile-button" (click)="dialogBox.openDialog('manufacture')">
+        <mat-icon>list</mat-icon>
+      </button>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="1" rowspan="2" [ngStyle]="tileColor('fluids')">
+      <div class="text-inside-grid">
+        Laboratorio de mecánica de fluidos
       </div>
       {{classStatus('fluids')}}
       <button mat-mini-fab color="primary" class="tile-button" (click)="dialogBox.openDialog('fluids')">

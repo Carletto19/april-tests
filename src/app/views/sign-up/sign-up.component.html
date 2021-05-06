@@ -1,3 +1,4 @@
+<!-- <button (click)="showUsers()" >Botoncito</button> -->
 <mat-card>
   <mat-card-title>Registrar</mat-card-title>
 <form class="example-form" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
@@ -22,7 +23,7 @@
     <mat-label>Correo electrónico</mat-label>
     <input matInput placeholder="ejemplo@uabc.edu.mx" type="email" formControlName="email" [ngClass]="validationStyles.inputStyle(emailInput)">
     <small *ngIf="validationStyles.requiredPrecaution(emailInput)" class="text-danger">Este espacio es requerido</small>
-    <small *ngIf="validationStyles.emailPatternPrecaution(emailInput)" class="text-danger">Por favor ingresa utilice correo UABC</small>
+    <small *ngIf="validationStyles.emailPatternPrecaution(emailInput)" class="text-danger">Por favor utilice correo UABC</small>
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
@@ -40,15 +41,16 @@
     </mat-select>
   </mat-form-field>
 
-  <a></a>
+  <div *ngIf="!isFormValid" class="text-danger">Por favor registre los datos de manera correcta</div>
   
   <div>
     <button mat-raised-button color="accent" type="submit">Registrar</button>
   </div>
+  <div *ngIf="emailExists" class="text-danger">Error en el registro</div>
 
 </form>
 <br>
-¿Ya tienes una cuenta? <p [routerLink]="['/signIn']">Inicia sesión</p>
+¿Ya tienes una cuenta? <a [routerLink]="['/signIn']">Inicia sesión</a>
 
 <!-- <div>
   {{ signUpForm.value | json }}

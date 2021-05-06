@@ -14,27 +14,46 @@ import { MainNavComponent } from '../../main-nav/main-nav.component'
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss']
 })
-export class SignUpComponent {
+export class SignUpComponent implements OnInit{
 
   registration: SignUpRegitration;
   validationStyles: ValidationStyles;
   majorList: Object = MAJOR_ARRAY;
+  emails = [];
+  emailExists: boolean = false;
+  // showUsers(){
+  //   const ALL_REGISTERED_EMAILS = this.emails;
+  //   if(ALL_REGISTERED_EMAILS.filter(x => x.email == this.emailTest)){
+  //     this.emailExists = true;
+  //   }
+  //   console.log(this.emailExists);
+  // }
 
   constructor(
     private fb: FormBuilder,
     private authentication: AuthService,
     private route: Router,
     private mainNav: MainNavComponent,
-    private registerDatabase: RegistrationService
+    public registerDatabase: RegistrationService
   ) {
     this.registration = new SignUpRegitration();
     this.validationStyles = new ValidationStyles;
+  }
+  ngOnInit(): void {
+    this.registerDatabase.getUser().subscribe( data => {
+      this.emails = data.map((e: any) => {
+        return {
+          email: e.payload.doc.data().email
+        }
+        })
+  
+      });
   }
 
   signUpForm = this.fb.group({
     firstName: ['', [Validators.required, Validators.pattern('^[a-z A-Z]*$')]],
     lastName: ['', [Validators.required, Validators.pattern('^[a-z A-Z]*$')]],
-    email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@uabc.edu.mx$')]],
+    email: ['', [Validators.required/*, Validators.pattern('^[a-z0-9._%+-]+@uabc.edu.mx$')*/]],
     password: ['', Validators.required],
     major: ['']
   });
@@ -70,20 +89,30 @@ export class SignUpComponent {
   }
 
 
-  public isFormValid: boolean;
+  public isFormValid: boolean = true;
   onSubmit() {
-
+    const data = this.dataInput();
+    const ALL_REGISTERED_EMAILS = this.emails;
     if (!this.signUpForm.valid) {
       this.isFormValid = false;
-      alert('Not valid!');
+      // alert('Not valid!');
+      return;
+    }
+
+    else if(ALL_REGISTERED_EMAILS.filter(x => x.email == data.email)){
+      this.emailExists = true;
       return;
     }
 
     else {
+
+      
       this.isFormValid = true;
-      const data = this.dataInput();
-      this.registerDatabase.registerUser(data);
+      this.emailExists = false;
+      // const data = this.dataInput();
+      this.registerDatabase.registerUser(data.firstName, data.lastName, data.email, data.major);
       const user = this.authentication.signUp(data.email, data.password);
+      
 
       if (user) {
         this.route.navigate(['/sendVerificationEmail']);

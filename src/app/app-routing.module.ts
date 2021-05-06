@@ -5,11 +5,12 @@ import { CompleteScheduleComponent } from './views/complete-schedule/complete-sc
 import { SignInComponent } from './views/sign-in/sign-in.component';
 import { SignUpComponent } from './views/sign-up/sign-up.component';
 import { SendEmailComponent } from './views/send-email/send-email.component';
+import { CheckSignInGuard } from './shared/guards/check-sign-in.guard';
 
 const routes: Routes = [
   {path: 'map', component: ScheduleMapComponent},
-  {path: 'signIn', component: SignInComponent},
-  {path: 'signUp', component: SignUpComponent},
+  {path: 'signIn', canActivate:[CheckSignInGuard], component: SignInComponent},
+  {path: 'signUp', canActivate:[CheckSignInGuard], component: SignUpComponent},
   {path: 'scheduleHome', component: ScheduleMapComponent},
   {path: 'completeSchedule', component: CompleteScheduleComponent},
   {path: 'sendVerificationEmail', component: SendEmailComponent},

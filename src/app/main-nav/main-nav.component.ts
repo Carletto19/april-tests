@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable, Subscription } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
+import { Observable, of, Subscription } from 'rxjs';
+import { map, shareReplay, switchMap, take } from 'rxjs/operators';
 import { AuthService } from '../data-services/auth.service';
 import { RegistrationService } from '../data-services/registration.service'
 import { ElementSchemaRegistry } from '@angular/compiler';
@@ -12,7 +12,7 @@ import { ElementSchemaRegistry } from '@angular/compiler';
   styleUrls: ['./main-nav.component.scss'],
   providers: [AuthService]
 })
-export class MainNavComponent implements OnInit, OnDestroy {
+export class MainNavComponent implements OnInit {
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -22,7 +22,7 @@ export class MainNavComponent implements OnInit, OnDestroy {
 
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private _authService: AuthService,
+    public _authService: AuthService,
     private registerDatabase: RegistrationService) { }
 
 
@@ -33,10 +33,7 @@ export class MainNavComponent implements OnInit, OnDestroy {
   public user$: Observable<any> = this._authService.angularAuth.user;
 
   ngOnInit() {
-
     this.checkForUser();
-    // this.obtenerUsuarios();
-    // this._authService.subjectApproved.subscribe();
   }
 
   checkForUser() {
@@ -45,47 +42,22 @@ export class MainNavComponent implements OnInit, OnDestroy {
         if (user) {
           this.isLogged = true;
           this.userEmail = user;
-          // console.log('User->', user);
+          console.log('User->', user);
         }
         else {
-          // console.log('No user');
+          console.log('No user');
         }
       }
     );
   }
 
 
-  // checkPermit(): Observable<boolean>{
-
-  // }
 
 
-
-  obtenerUsuarios() {
-
-    this.user$.subscribe(result => {console.log(result)})
-    this.databaseSubscription = this.registerDatabase.getUser().subscribe(userArray => {
-      userArray.map((element: any) => {
-        // console.log({
-        //   nombre: element.payload.doc.data().firstName,
-        //   apellido: element.payload.doc.data().lastName,
-        //   email: element.payload.doc.data().email,
-        // }
-        // )
-      });
-    },
-      error => { console.error('ERROR'), error }
-    )
-  }
-
-
-  ngOnDestroy() {
-  }
 
   onSignOut() {
     this.isLogged = false;
     this._authService.logOut();
-
   }
 
 

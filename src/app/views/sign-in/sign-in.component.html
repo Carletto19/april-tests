@@ -9,15 +9,19 @@
       [ngClass]="validationStyles.inputStyle(emailInput)">
 
     <small *ngIf="validationStyles.requiredPrecaution(emailInput)" class="text-danger">Por favor complete este espacio</small>
-    <small *ngIf="validationStyles.emailPatternPrecaution(emailInput)" class="text-danger">Por favor ingresa un correo electrónico válido</small>
+    <small *ngIf="validationStyles.emailPatternPrecaution(emailInput)" class="text-danger">Este correo no es de UABC</small>
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
     <mat-label>Contraseña</mat-label>
     <input matInput placeholder="********" type="password" formControlName="password"
       [ngClass]="validationStyles.inputStyle(passwordInput)">
-    <small *ngIf="validationStyles.requiredPrecaution(passwordInput)" class="text-danger">>Por favor complete este espacio</small>
+    <small *ngIf="validationStyles.requiredPrecaution(passwordInput)" class="text-danger">Por favor complete este espacio</small>
   </mat-form-field>
+
+  <p *ngIf="!signInForm.valid && signInForm.controls.email.dirty && signInForm.controls.password.dirty" class="text-danger">Por favor registre sus datos de manera correcta</p>
+
+  <div *ngIf="!userExists" class="text-danger">Usuario y/o contraseña incorrectos</div>
 
   <div>
      <button mat-raised-button color="accent" type="submit">Iniciar sesión</button>
@@ -25,7 +29,7 @@
 
 </form>
 <br>
-¿Aún no tienes una cuenta? <p [routerLink]="['/signUp']">Regístrate</p>
+¿Aún no tienes una cuenta? <a [routerLink]="['/signUp']">Regístrate</a>
 
 
 <!-- <div *ngIf="signInApproved | async">Hola HOla HOLA </div>

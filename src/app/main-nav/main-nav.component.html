@@ -27,10 +27,9 @@
       </div>
       <ng-template #noUser>
         <a [routerLink]="['/signUp']" *ngIf="!user">Regístrate</a>
-        <a [routerLink]="['/signIn']" *ngIf="!user">Iniciar sesión</a>
+        <a [routerLink]="['/signIn']" *ngIf="!user">Inicia sesión</a>
       </ng-template>
 
-      <button (click)="obtenerUsuarios()">OBTENER</button>
     </mat-toolbar>
 
     <ng-content></ng-content>

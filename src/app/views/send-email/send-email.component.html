@@ -1,12 +1,37 @@
-<div *ngIf="user$ | async as user; else loading"><p>send-email works!</p>
+<div *ngIf="user$ | async as user; else loading">
 
-<h2>¡Gracias por registrarte  {{ user?.email }} ! </h2>
 
-<p>Hemos enviado un email de verificación al correo </p>
+    <mat-card class="example-card">
+        <mat-card-header>
+            <mat-card-title>¡Gracias por registrarte {{ user?.email }} ! </mat-card-title>
+        </mat-card-header>
 
-<p>Por favor revisa tu bandeja de entrada para continuar con tu registro</p>
+        <mat-card-content>
+            <h3>Hemos enviado un email de verificación al correo </h3>
 
-<button (click)="resendEmail()">Reenviar correo de verificación</button>
+            <p>Por favor revisa tu bandeja de entrada para continuar con tu registro
+            <p>
+
+
+            <h3>Si ya has verificado tu correo, inicia sesión con tu nueva cuenta</h3>
+            <button mat-raised-button color="primary" (click)="signOutAndRedirectToSignIn()" routerLink="/signIn">Iniciar sesión</button>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="warn" (click)="resendEmail()" >Reenviar correo de verificación</button>
+        </mat-card-actions>
+    </mat-card>
+
+    <!-- <h1>¡Gracias por registrarte {{ user?.email }} ! </h1>
+
+    <h2>Hemos enviado un email de verificación al correo </h2>
+
+    <h3>Por favor revisa tu bandeja de entrada para continuar con tu registro</h3>
+
+
+    <button mat-raised-button color="primary" (click)="resendEmail()">Reenviar correo de verificación</button>
+
+    <h3>Si ya has verificado tu correo, inicia sesión con tu nueva cuenta</h3>
+    <button mat-raised-button color="primary" (click)="signOutAndRedirectToSignIn()">Iniciar sesión</button> -->
 </div>
 
 <ng-template #loading>

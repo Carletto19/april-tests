@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
@@ -19,10 +19,13 @@ export class ChatComponent implements OnInit {
 
   // allMessages: Observable<Message>
 
+  
+
   constructor(
     private dialog: MatDialog,
     private authService: AuthService,
     public _chatService: ChatService,
+    public chatDeleter: ChatComponentContent,
   ) {
     // this.allMessages = this.chatService.getMessages();
   }
@@ -30,7 +33,7 @@ export class ChatComponent implements OnInit {
 
 
   ngOnInit(): void {
-    
+    this.chatDeleter.deleteMessageAfter2Hours();
   }
 
 
@@ -44,11 +47,12 @@ export class ChatComponent implements OnInit {
 
 
 @Component({
+  selector: 'app-chat-content',
   templateUrl: './chat-content/chat-content.component.html',
   styleUrls: ['./chat-content/chat-content.component.scss']
 })
 export class ChatComponentContent implements OnInit {
-
+  @ViewChild('newMessage') inputName; // accessing the reference element
   messageInput: FormGroup;
   allMessages: Observable<Message>;
   
@@ -62,79 +66,47 @@ export class ChatComponentContent implements OnInit {
 
   public hour: number;
   public minutes: Number;
+  public newMessage: string;
   ngOnInit(): void {
-    setInterval(() => {
-      const time = new Date;
-      this.minutes = time.getMinutes();
-      this.hour = time.getHours();
-      if(this.hour==0){
-        this.hour = 22;
-      }
-      else if (this.hour == 1){
-        this.hour = 23;
-      }
-      //this.deleteAfter2Hours()
-    }, 10000);
-    this.deleteMessageAfter2Hours()
+
+   // this.deleteMessageAfter2Hours();
   }
 
 
   sendMessage(message: string) {
     if(message != ''){
     this._chatService.sendMessage(message);
+    this.inputName.nativeElement.value = '';
     }
     return;
   }
 
 
   deleteMessageAfter2Hours(){
-    this._chatService.getMessages().pipe(first()).subscribe(allMessages =>{
-      this._chatService.chatDatabase.database.ref('/messages/').child('-MY73zTvGBdcmFD8Sqtv').remove();
-      // let messageTime = <number>allMessages[0].timeCheck+ 2 * 60 * 60 * 1000;
+    this._chatService.getMessages().pipe().subscribe(async allMessages =>{
       let currentTime = Date.now();
       // console.log(currentTime);
       let allMessagesTimes = [];
       let allIds = [];
 
       for(let y = 0; y<allMessages.length-1; y++){
-        allMessagesTimes.push(allMessages[y].timeCheck + 1 * 60 * 60 * 1000 )
+        allMessagesTimes.push(allMessages[y].timeCheck + (1/60) * 60 * 60 * 1000);
         allIds.push(allMessages[y].id);
       }
 
       for(let i = 0; i<allMessages.length-1; i++){
         if(allMessagesTimes[i]<= currentTime){
-          this._chatService.chatDatabase.database.ref('/messages/').child(allIds[i]).remove();
-        }
-        else{
-          console.log(false);
+          await this._chatService.chatDatabase.database.ref('/messages/').child(allIds[i]).remove(); //this function deletes content inside allIds 
         }
       }
 
-      console.log(allMessagesTimes);
-      console.log(allIds);
+      // console.log(allMessagesTimes, "annnnnnnnnd" , currentTime);
+     // console.log(allIds);
     }); 
   }
 
 
   
-  tests(){
-    this._chatService.getMessages().pipe(first()).subscribe(allMessages =>{
-      if(allMessages.length<=1){
-        console.log('No hay nada')
-        return;
-      }
-      let usableTime = allMessages[0].time.slice(0,-3);
-      let itemKey = allMessages[0].id;
-      if(usableTime == this.timeFormat()){
-        this._chatService.chatDatabase.database.ref('/messages/').child(itemKey).remove();
-        console.log(true);
-        return
-      }
-      else{
-        console.log(false + itemKey + '    messagetuime->' + usableTime + '      actualtime->'+ this.timeFormat());
-      }
-    })
-  }
 
 
   

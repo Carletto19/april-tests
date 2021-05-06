@@ -16,11 +16,27 @@ export class RegistrationService {
     private firestore: AngularFirestore
   ) { }
 
-  getUser(): Observable<any>{ // metodo para listar todos los estudiantes
-    return this.firestore.collection('users').snapshotChanges().pipe(/*, map(element => element.map)*/    );                                   //dile al tio que es lo que pasa cuando quitas .pipe(first())
+   getUser(): Observable<any>{ // metodo para listar todos los estudiantes
+    // console.log(this.firestore.collection('users').snapshotChanges().pipe(/*, map(element => element.map)*/    ));
+    return this.firestore.collection('users').snapshotChanges();/*, map(element => element.map)    );              */                     //dile al tio que es lo que pasa cuando quitas .pipe(first())
   }
 
-  registerUser(user: IdentificationTemplate){ //metodo para crear usuario
+  // emails = [];
+  // allUsers(){
+  //   this.getUser().subscribe( data => {
+  //   this.emails = data.map((e: any) => {
+  //     console.log(e.payload.doc.data().email);
+  //     return {
+  //       email: e.payload.doc.data().email
+  //     }
+  //     })
+
+  //   });
+  //   }
+  
+
+  registerUser(firstName, lastName, email, major){ //metodo para crear usuario
+    const user = {firstName, lastName, email, major}
     return this.firestore.collection('users').add(user)
                           .then((resp)=>{console.log('REGISTRED', resp);})
                           .catch((error)=>{console.log('EXISTE UN ERROR ', error)});
